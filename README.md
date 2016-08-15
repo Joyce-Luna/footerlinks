@@ -1,6 +1,6 @@
 ################################ Readme Englisch / German ################################
 
-# phpBB 3.2 Extension - footer_links
+# phpBB 3.2 Extension - Footerlinks
 - License [GPLv2](license.txt)
 
 ## footer_links created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
