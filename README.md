@@ -86,7 +86,7 @@ Note: Please change the overall_footer_after.html carefully.
 # Note: created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
 ===========================================================================================
 
-# PhpBB 3.2 Extension - footer_links
+# PhpBB 3.2 Extension - Footerlinks
 - Lizenz [GPLv2] (license.txt)
 
 ## Footer_links erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
@@ -171,4 +171,3 @@ Hinweis: Bitte ändern Sie die overall_footer_after.html sorgfältig.
 
 ===============================================================================
 # Hinweis: erstellt 2016 Joyce & Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
-
