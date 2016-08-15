@@ -1,0 +1,7 @@
+services:
+    joyceluna.footerlinks.listener:
+        class: joyceluna\footerlinks\event\listener
+        arguments:
+            - @user
+        tags:
+            - { name: event.listener }
