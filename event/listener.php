@@ -7,47 +7,45 @@
 *
 */
 namespace joyceluna\footerlinks\event;
- 
+
 /**
 * @ignore
 */
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
- 
+
 /**
 * Event listener
 */
 class listener implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
-    {
-        return array(
-            'core.page_header'      => 'page_header',
-        );
-    }
- 
-    /** @var \phpbb\user */
-    protected $user;
- 
- 
-    /**
-     * Constructor
-     *
-     * @param \phpbb\user       $user       User object
-     */
-    public function __construct(\phpbb\user $user)
-    {
-        $this->user = $user;
- 
-    }
-    /**
-    * Load language file
-    *
-    * @param    object  $event  The event object
-    * @return   null
-    * @access   public
-    */
-    public function page_header($event)
-    {
-        $this->user->add_lang_ext('joyceluna/footerlinks', 'main');
-    }
+	public static function getSubscribedEvents()
+	{
+		return array(
+			'core.page_header'      => 'page_header',
+		);
+	}
+
+	/** @var \phpbb\user */
+	protected $user;
+
+	/**
+	 * Constructor
+	 *
+	 * @param \phpbb\user       $user       User object
+	 */
+	public function __construct(\phpbb\user $user)
+	{
+		$this->user = $user;
+	}
+	/**
+	 * Load language file
+	 *
+	 * @param    object  $event  The event object
+	 * @return   null
+	 * @access   public
+	 */
+	public function page_header($event)
+	{
+		$this->user->add_lang_ext('joyceluna/footerlinks', 'main');
+	}
 }
