@@ -17,7 +17,7 @@ Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-sty
 1. Download the archive, unpack.
 2. Copy the contents from the unzipped folder in the file path "phpBB / ext / joyce luna / footerlinks"
 3. Open the folder: joyce luna / footerlinks / styles / prosilver / template / event / overall_footer_after.html and adjust the link list.
-4. Go to the "ACP"> "Customize"> "Extensions" and activate the extension "footer_links".
+4. Go to the "ACP"> "Customize"> "Extensions" and activate the extension "footerlinks".
 5. Clearing the Cache
 
 ## Example, HTML
