@@ -1,4 +1,4 @@
-# Readme Englisch / German 
+## Readme Englisch / German 
 
 # phpBB 3.2 Extension - Footerlinks
 - License [GPLv2](license.txt)
@@ -15,8 +15,8 @@ Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-sty
 
 ##### installation
 1. Download the archive, unpack.
-2. Copy the contents from the unzipped folder in the file path "phpBB / ext / joyce luna / footer_links"
-3. Open the folder: joyce luna / footer_links / styles / prosilver / template / event / overall_footer_after.html and adjust the link list.
+2. Copy the contents from the unzipped folder in the file path "phpBB / ext / joyce luna / footerlinks"
+3. Open the folder: joyce luna / footerlinks / styles / prosilver / template / event / overall_footer_after.html and adjust the link list.
 4. Go to the "ACP"> "Customize"> "Extensions" and activate the extension "footer_links".
 5. Clearing the Cache
 
@@ -96,7 +96,7 @@ Note: created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-des
 
 Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
-### Bedarf
+### Vorraussetzung
 - PhpBB 3.1 < 3.2 
 - PHP 5.4 < 7.0 
 
@@ -106,8 +106,8 @@ Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-s
 
 ##### Einbau
 1. das Archiv herunterladen, entpacken.
-2. Kopieren Sie den Inhalt aus dem entpackten Ordner, in den Dateipfad "phpBB / ext / joyceluna / footer_links"
-3. Öffnen sie den Ordner: joyceLuna/footer_links/styles/prosilver/template/event/overall_footer_after.html und passen die Linkliste an.
+2. Kopieren Sie den Inhalt aus dem entpackten Ordner, in den Dateipfad "phpBB / ext / joyceluna / footerlinks"
+3. Öffnen sie den Ordner: joyceLuna/footerlinks/styles/prosilver/template/event/overall_footer_after.html und passen die Linkliste an.
 4. Gehen Sie ins "ACP"> "Anpassen"> "Erweiterungen" und aktivieren Sie die Erweiterung "Footerlinks".
 5. Danach löschen Sie den Cache.
 
