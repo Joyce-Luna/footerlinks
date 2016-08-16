@@ -9,7 +9,7 @@ footer_links created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-st
 - phpBB 3.1 < 3.2 or higher
 - PHP 5.4 < 7.0 or higher
 
-#### Languages supported
+## Languages supported
 - English
 - German 
 
