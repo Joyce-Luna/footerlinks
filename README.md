@@ -1,4 +1,4 @@
-### Readme English / German 
+### 						Readme English / German 
 
 # phpBB 3.2 Extension - Footerlinks
 - License [GPLv2](license.txt)
@@ -13,7 +13,7 @@ Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-sty
 - English
 - German 
 
-##### installation
+## installation
 1. Download the archive, unpack.
 2. Copy the contents from the unzipped folder in the file path "phpBB / ext / joyce luna / footerlinks"
 3. Open the folder: joyce luna / footerlinks / styles / prosilver / template / event / overall_footer_after.html and adjust the link list.
@@ -104,7 +104,7 @@ Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-s
 - English
 - German 
 
-##### Einbau
+## Einbau
 1. das Archiv herunterladen, entpacken.
 2. Kopieren Sie den Inhalt aus dem entpackten Ordner, in den Dateipfad "phpBB / ext / joyceluna / footerlinks"
 3. Öffnen sie den Ordner: joyceLuna/footerlinks/styles/prosilver/template/event/overall_footer_after.html und passen die Linkliste an.
