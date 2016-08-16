@@ -3,7 +3,7 @@
 # phpBB 3.2 Extension - Footerlinks
 - License [GPLv2](license.txt)
 
-footer_links created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
+Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
 ### Requirements
 - phpBB 3.1 < 3.2 or higher
@@ -49,7 +49,7 @@ Note: Please change the overall_footer_after.html carefully.
 
 ==========================================================
 
-<!-- footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de ) -->
+<!-- Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de ) -->
 ```html
 <br>
 <div class="footer-links">
@@ -94,7 +94,7 @@ Note: created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-des
 # PhpBB 3.2 Extension - Footerlinks
 - Lizenz [GPLv2] (license.txt)
 
-Footer_links erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
+Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
 #### Bedarf
 - PhpBB 3.1 < 3.2 
