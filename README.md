@@ -31,7 +31,7 @@ The titles of the boxes can be changed with language variables.
 		<li><h2>{L_SURFTIPPLINK}</h2></li>
 ```
 
-specifications:
+Specifications:
 ```php
 	'SURFTIPPLINK'					 => 'Usefull links',
 	'ADVERTISINGLINK'				 => 'Advertising',
