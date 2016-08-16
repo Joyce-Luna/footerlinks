@@ -96,11 +96,11 @@ Note: created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-des
 
 Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
-#### Bedarf
+### Bedarf
 - PhpBB 3.1 < 3.2 
 - PHP 5.4 < 7.0 
 
-#### Languages 
+### Languages 
 - English
 - German 
 
