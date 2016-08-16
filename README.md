@@ -1,4 +1,4 @@
-################################ Readme Englisch / German ################################
+=================================== # Readme Englisch / German ===================================
 
 # phpBB 3.2 Extension - Footerlinks
 - License [GPLv2](license.txt)
