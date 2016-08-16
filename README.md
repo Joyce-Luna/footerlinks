@@ -1,4 +1,4 @@
-### Readme Englisch / German 
+### Readme English / German 
 
 # phpBB 3.2 Extension - Footerlinks
 - License [GPLv2](license.txt)
@@ -20,7 +20,7 @@ Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-sty
 4. Go to the "ACP"> "Customize"> "Extensions" and activate the extension "footer_links".
 5. Clearing the Cache
 
-###### Example, HTML
+## Example, HTML
 Note: Edit the thoroughly overall_footer_after.html.
 Please change the placeholder #link and write after a small link text.
 
@@ -111,7 +111,7 @@ Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-s
 4. Gehen Sie ins "ACP"> "Anpassen"> "Erweiterungen" und aktivieren Sie die Erweiterung "Footerlinks".
 5. Danach löschen Sie den Cache.
 
-###### Beispiel, HTML
+## Beispiel, HTML
 Hinweis: Bearbeiten Sie die gründlich overall_footer_after.html.
 Bitte ändern Sie den Platzhalter #link und schreiben Sie danach einen kleinen Link Text.
 
