@@ -179,3 +179,4 @@ Hinweis: Bitte ändern Sie die overall_footer_after.html sorgfältig.
 ===============================================================================
 Hinweis: erstellt 2016 Joyce & Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
+<img src="https://api.travis-ci.org/Joyce-Luna/footerlinks.svg?branch=master">
