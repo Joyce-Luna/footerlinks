@@ -1,9 +1,9 @@
 ################################ Readme Englisch / German ################################
 
-# phpBB 3.2 Extension - Footerlinks
+# phpBB 3.2 Extension - footer_links
 - License [GPLv2](license.txt)
 
-## footer_links created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
+footer_links created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
 ### Requirements
 - phpBB 3.1 < 3.2 or higher
@@ -25,11 +25,14 @@ Note: Edit the thoroughly overall_footer_after.html.
 Please change the placeholder #link and write after a small link text.
 
 The titles of the boxes can be changed with language variables.
+```html
 		<li><h2>{L_FRIENDSLINK}</h2></li>
 		<li><h2>{L_ADVERTISINGLINK}</h2></li>
 		<li><h2>{L_SURFTIPPLINK}</h2></li>
+```
 
 specifications:
+```php
 	'SURFTIPPLINK'					 => 'Usefull links',
 	'ADVERTISINGLINK'				 => 'Advertising',
 	'OFFERLINK'						 => 'Specials',
@@ -37,6 +40,7 @@ specifications:
 	'ARTICLELINK'					 => 'Products',
 	'INFORMATIONLINK'				 => 'Information',
 	'FRIENDSLINK'					 => 'Friends',
+```
 
 Own language variables can be added under language/en/main.php added.
 
@@ -46,7 +50,7 @@ Note: Please change the overall_footer_after.html carefully.
 ==========================================================
 
 <!-- footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de ) -->
-
+```html
 <br>
 <div class="footer-links">
 	<div class="panel bg3">
@@ -81,15 +85,16 @@ Note: Please change the overall_footer_after.html carefully.
 </div>
 </div>
 <br>
+```
 
 ===========================================================================================
-# Note: created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
-===========================================================================================
+Note: created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
-# PhpBB 3.2 Extension - Footerlinks
+
+# PhpBB 3.2 Extension - footer_links
 - Lizenz [GPLv2] (license.txt)
 
-## Footer_links erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
+Footer_links erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
 ### Bedarf
 - PhpBB 3.1 < 3.2 
@@ -111,12 +116,14 @@ Hinweis: Bearbeiten Sie die gründlich overall_footer_after.html.
 Bitte ändern Sie den Platzhalter #link und schreiben Sie danach einen kleinen Link Text.
 
 Die Überschriften der Boxen können beliebig mit Sprachvariablen geändert werden.
+```html
 		<li><h2>{L_FRIENDSLINK}</h2></li>
 		<li><h2>{L_ADVERTISINGLINK}</h2></li>
 		<li><h2>{L_SURFTIPPLINK}</h2></li>
+```
 
 Vorgaben:
-
+```php
 	'SURFTIPPLINK'					 => 'Nützliche Links',
 	'ADVERTISINGLINK'				 => 'Werbung',
 	'OFFERLINK'						 => 'Angebote',
@@ -124,7 +131,7 @@ Vorgaben:
 	'ARTICLELINK'					 => 'Artikel',
 	'INFORMATIONLINK'				 => 'Informationen',
 	'FRIENDSLINK'					 => 'Freunde',
-
+```
 Eigene Sprachvariablen können unter language/de/main.php hinzu gefügt werden.
 
 HTML-Dump: Die Links sind Beispiele.
@@ -133,7 +140,7 @@ Hinweis: Bitte ändern Sie die overall_footer_after.html sorgfältig.
 ==========================================================
 
 <!-- footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de ) -->
-
+```html
 <br>
 <div class="footer-links">
 	<div class="panel bg3">
@@ -168,6 +175,7 @@ Hinweis: Bitte ändern Sie die overall_footer_after.html sorgfältig.
 </div>
 </div>
 <br>
-
+```
 ===============================================================================
-# Hinweis: erstellt 2016 Joyce & Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
+Hinweis: erstellt 2016 Joyce & Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
+
