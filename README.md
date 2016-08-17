@@ -1,6 +1,8 @@
 ### 						Readme English / German 
 
 # phpBB 3.2 Extension - Footerlinks
+<img src="https://api.travis-ci.org/Joyce-Luna/footerlinks.svg?branch=master">
+
 - License [GPLv2](license.txt)
 
 Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-style-design.de )
@@ -179,4 +181,3 @@ Hinweis: Bitte ändern Sie die overall_footer_after.html sorgfältig.
 ===============================================================================
 Hinweis: erstellt 2016 Joyce & Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
-<img src="https://api.travis-ci.org/Joyce-Luna/footerlinks.svg?branch=master">
