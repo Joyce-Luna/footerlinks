@@ -11,6 +11,16 @@ div.footer-links div.panel {
 	margin: 0 25px;
 }
 
+.footer-links ul li:first-child {
+	border-bottom-color: #cccccc;
+	color: #000;
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+	margin-top: 0.1em;
+	padding-bottom: 0.5em;
+}
+
 div.footer-links ul {
 	list-style: none;
 }
