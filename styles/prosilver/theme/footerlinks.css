@@ -12,7 +12,7 @@ div.footer-links div.panel {
 }
 
 .footer-links ul li:first-child {
-	border-bottom-color: #cccccc;
+	border-bottom: 1px solid #cccccc;
 	color: #000;
 	font-size: 12px;
 	font-weight: bold;
