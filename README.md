@@ -23,9 +23,9 @@ Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-sty
 
 ===========================================================================================
 
+#German
 
-
-# PhpBB 3.2 Extension - Footerlinks
+# phpBB 3.2 Extension - Footerlinks
 - Lizenz [GPLv2] (license.txt)
 
 Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
