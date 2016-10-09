@@ -31,7 +31,7 @@ Footerlinks created 2016 Joyce&Luna by phpBB-Style-Design.de ( https://phpbb-sty
 Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
 
 ### Vorraussetzung
-- PhpBB 3.1 < 3.2 
+- phpBB 3.1 < 3.2 
 - PHP 5.4 < 7.0 
 
 ### Languages 
