@@ -30,7 +30,7 @@ class init extends \phpbb\db\migration\migration
 			// ADD NEW TABLE STRUCTUR
 				$this->table_prefix . 'footerlinks'	=> array(
 					'COLUMNS' => array(
-					'footerlinks_id'	=> array('UINT', NULL, 'auto_increment'),
+					'footerlinks_id'	=> array('UINT', null, 'auto_increment'),
 					'fl_enable' 		=> array('UINT', '0'),
 					'fl_ext_link'		=> array('UINT', '0'),
 					'fl_enable_b1'		=> array('UINT', '0'),		//Block 1
@@ -59,7 +59,6 @@ class init extends \phpbb\db\migration\migration
 			array('config.add', array('footerlinks_version', 'RC 1.3.0')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
-
 
 		// Add ACP modules
 			array('module.add', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_FOOTERLINKS_TITLE')),
