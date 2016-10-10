@@ -52,7 +52,7 @@ class init extends \phpbb\db\migration\migration
 		);
 	}
 
-   	public function update_data()
+	public function update_data()
 	{
 		// ADD CONFIG VERSION
 		return array(
@@ -71,7 +71,7 @@ class init extends \phpbb\db\migration\migration
 			))),
 
 		// ADD VALUES => DB
-        array('custom', array(array(&$this, 'add_footerlinks_data'))),
+		array('custom', array(array(&$this, 'add_footerlinks_data'))),
 		);
 	}
 
