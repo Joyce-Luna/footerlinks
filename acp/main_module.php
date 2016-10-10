@@ -32,7 +32,7 @@ class main_module
 		$this->tpl_name = 'acp_footerlinks';
 		$this->page_title = $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request = $request;
-		add_form_key('footerlinks/acp_footerlinks');		
+		add_form_key('footerlinks/acp_footerlinks');
 //BLOCK 1 
 		$sql = 'SELECT fl_link1, fl_link_text1, footerlinks_id
 		FROM ' . FOOTERLINKS_TABLE;
@@ -42,26 +42,26 @@ class main_module
 		while ($row = $db->sql_fetchrow($result))
 		{
 		if (!empty($row['fl_link1']))
-			{	
+			{
 				$count1 = false;
 				$template->assign_block_vars('fl_links1', array(
 				'FL_LINK1'			=> $row['fl_link1'],
 				'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
 				));
 			};
-		};	
+		};
 		if ($count1)
 		{
 			$template->assign_block_vars('fl_links1', array(
 			'FL_LINK1'			=> ' ',
-			));		
+			));
 		};
 //BLOCK 2
 		$sql = 'SELECT fl_link2, fl_link_text2
-		FROM ' . FOOTERLINKS_TABLE;		
+		FROM ' . FOOTERLINKS_TABLE;
 		$result = $db->sql_query($sql);
-		$count2 = true;	
-		
+		$count2 = true;
+
 		while (!empty($row = $db->sql_fetchrow($result)))
 		{
 			if (!empty($row['fl_link2']))
@@ -77,14 +77,14 @@ class main_module
 		{
 			$template->assign_block_vars('fl_links2', array(
 			'FL_LINK2'			=> ' ',
-			));		
+			));
 		};
 //BLOCK 3
 		$sql = 'SELECT fl_link3, fl_link_text3
 		FROM ' . FOOTERLINKS_TABLE;
 		$result = $db->sql_query($sql);
 		$count3 = true;
-		
+
 		while ($row = $db->sql_fetchrow($result))
 		{
 			if (!empty($row['fl_link3']))
@@ -94,15 +94,15 @@ class main_module
 					'FL_LINK3'			=> $row['fl_link3'],
 					'FL_LINK_TEXT3'		=> $row['fl_link_text3'],
 				));
-			}	
-		};	
+			}
+		};
 		if ($count3)
 		{
 			$template->assign_block_vars('fl_links3', array(
 			'FL_LINK3'			=> ' ',
-			));		
-		};		
-// SUBMIT		
+			));
+		};
+// SUBMIT
 		$submit = $request->is_set_post('submit');
 		if ($submit)
 		{
@@ -110,13 +110,13 @@ class main_module
 			{
 				trigger_error('FORM_INVALID');
 			}
-			
+
 			function parseurl($fl_url)
 			{ 
 				if (!preg_match("@^[hf]tt?ps?://@", $fl_url)) 
 				{
-        			$fl_url = "http://" . $fl_url;
-    			}
+				$fl_url = "http://" . $fl_url;
+				}
 				return $fl_url;
 			}
 // TRUNCATE 
@@ -129,17 +129,17 @@ class main_module
 				);
 				$sql = 'INSERT INTO ' . FOOTERLINKS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_arr_id);
 				$db->sql_query($sql);
-			};		
+			};
 // Block 1
 			$fl_link1 		= utf8_normalize_nfc($this->request->variable('fl_link1', array('' => ''),true));
 			$fl_link_text1 	= utf8_normalize_nfc($this->request->variable('fl_link_text1', array('' => ''),true));
 			$fl_link1 = array_merge( array_filter($fl_link1));
-			
+
 			$i = 0;
 			while($i < count($fl_link1))
 			{
 				$fl_link1[$i] = parseurl($fl_link1[$i]);
- 			
+ 
 				$sql_ary1 = array(
 				'fl_link1' 			=> $fl_link1[$i],
 				'fl_link_text1'		=> $fl_link_text1[$i],
@@ -151,12 +151,12 @@ class main_module
 			$fl_link2 		= utf8_normalize_nfc($this->request->variable('fl_link2', array('' => ''),true));
 			$fl_link_text2 	= utf8_normalize_nfc($this->request->variable('fl_link_text2', array('' => ''),true));
 			$fl_link2 = array_merge( array_filter($fl_link2));
-	
+
 			$i = 0;
 			while($i < count($fl_link2))
 			{
 				$fl_link2[$i] = parseurl($fl_link2[$i]);
-				
+
 				$sql_ary2 = array(
 				'fl_link2' 			=> $fl_link2[$i],
 				'fl_link_text2'		=> $fl_link_text2[$i],
@@ -166,9 +166,9 @@ class main_module
 			}
 // Block 3
 			$fl_link3 		= utf8_normalize_nfc($this->request->variable('fl_link3', array('' => ''),true));
-			$fl_link_text3 	= utf8_normalize_nfc($this->request->variable('fl_link_text3', array('' => ''),true));				
+			$fl_link_text3 	= utf8_normalize_nfc($this->request->variable('fl_link_text3', array('' => ''),true));
 			$fl_link3 = array_merge( array_filter($fl_link3));
-	
+
 			$i = 0;
 			while($i < count($fl_link3) && (!empty($fl_link3[$i])))
 			{
@@ -181,7 +181,7 @@ class main_module
 				$db->sql_multi_insert(FOOTERLINKS_TABLE, $sql_ary3);
 				$i++;
 			}
-			
+
 			$sql_ary_block= array(
 				'fl_enable' 		=> $this->request->variable('fl_enable', ''),
 				'fl_ext_link' 		=> $this->request->variable('fl_ext_link', ''),
@@ -195,10 +195,10 @@ class main_module
 
 			$db->sql_query('UPDATE ' . FOOTERLINKS_TABLE . '
 				SET ' . $db->sql_build_array('UPDATE', $sql_ary_block) . '
-				WHERE footerlinks_id =  "1"'	
-			);		
+				WHERE footerlinks_id =  "1"'
+			);
 
-			add_log('admin', 'LOG_FL_SAVE', str_replace('%', '*', ''));	
+			add_log('admin', 'LOG_FL_SAVE', str_replace('%', '*', ''));
 			trigger_error($user->lang['FL_SAVED'] . adm_back_link($this->u_action));
 		}
 
@@ -219,7 +219,7 @@ class main_module
 			'FL_TITLE_CAT2'		=> $fl_data['fl_title_cat2'],
 			'FL_TITLE_CAT3'		=> $fl_data['fl_title_cat3'],
 		));
-	}	
+	}
 }
 
 ?>
