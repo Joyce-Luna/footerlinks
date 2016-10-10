@@ -42,11 +42,11 @@ function clone_this(id)
 			<input type="radio" class="radio" name="fl_enable" value="0" <!-- IF not FL_ENABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
 		</dl>
 	</fieldset>
-	<fieldset>
+
 	<legend>{L_FL_BVIEW}</legend>
 	{L_FL_BCOMMENT}
 	<br />
-	
+
 	<fieldset>
 		<dl>
 			<dt><label for="fl_ext_link">{L_FL_EXT_LINK}</label></dt>
@@ -73,7 +73,6 @@ function clone_this(id)
 		</dl>
 	</fieldset>
 	<fieldset>
-		</dl>
 		<dl>
 			<dt><label for="fl_enable_b2"><a href="#" onclick="show_elements('cat2','link2');hide_elements('cat1','cat3','link1','link3');">{L_FL_ENABLE_B2}</a></label></dt>
 			<dd style="display:none" id="cat2"><input type="radio" class="radio" id="fl_enable_b2" name="fl_enable_b2" value="1" <!-- IF FL_ENABLE_B2 -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
@@ -106,9 +105,9 @@ function clone_this(id)
 				</p>
 				<!-- END fl_links3 -->
 				<dd style="display:none" id="link3"><input value="{L_FL_MORE_LINKS}" onclick="clone_this('fl_link3').value" type="button"></dd>
-			</dd>	
+			</dd>
 		</dl>
-	</fieldset>		
+	</fieldset>
 		<p class="submit-buttons">
 			{S_FORM_TOKEN}
 			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
