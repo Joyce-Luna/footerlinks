@@ -52,4 +52,3 @@ $lang = array_merge($lang, array(
 	'LOG_FL_SAVE'						=> 'Settings Footerlink Mod changed' ,
 	'FL_SAVED'							=> 'Settngs saved',
 ));
-?>
