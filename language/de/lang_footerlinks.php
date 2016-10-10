@@ -52,4 +52,3 @@ $lang = array_merge($lang, array(
 	'LOG_FL_SAVE'						=> 'Footerlink Einstellung geändert',
 	'FL_SAVED'							=> 'Einstellungen gespeichert',
 ));
-?>
