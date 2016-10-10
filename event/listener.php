@@ -48,12 +48,12 @@ class listener implements EventSubscriberInterface
 	{
 		$this->user->add_lang_ext('joyceluna/footerlinks', 'lang_footerlinks');
 	}
-	
+
 	public function footerlinks($event)
 	{
-	
+
 		include 'ext/joyceluna/footerlinks/core/footerlinks.php';
 	}
-	
+
 }
 ?>
