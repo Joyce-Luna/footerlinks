@@ -15,7 +15,7 @@ class init extends \phpbb\db\migration\migration
 	public function effectively_installed()
 	{
 		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], 'RC 1.3.0', '>=');
-		
+
 	}
 
 	static public function depends_on()
@@ -59,8 +59,8 @@ class init extends \phpbb\db\migration\migration
 			array('config.add', array('footerlinks_version', 'RC 1.3.0')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
-			
-			
+
+
 		// Add ACP modules
 			array('module.add', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_FOOTERLINKS_TITLE')),
 			array('module.add', array('acp', 'ACP_FOOTERLINKS_TITLE', array(
@@ -69,18 +69,18 @@ class init extends \phpbb\db\migration\migration
 				'module_mode'		=> 'overview',
 				'module_auth'		=> 'ext_joyceluna/footerlinks && acl_a_board',
 			))),
-		
+
 		// ADD VALUES => DB
         array('custom', array(array(&$this, 'add_footerlinks_data'))),
 		);
 	}
 
-   	public function add_footerlinks_data()
-   	{
-    	$footerlinks_sql_query = array(  
-      		'footerlinks_id'	=> '1',
-      	);
-      	$this->db->sql_multi_insert($this->table_prefix . 'footerlinks', $footerlinks_sql_query);
+	public function add_footerlinks_data()
+	{
+		$footerlinks_sql_query = array(
+		'footerlinks_id'	=> '1',
+		);
+		$this->db->sql_multi_insert($this->table_prefix . 'footerlinks', $footerlinks_sql_query);
 	}
 
 	/**
