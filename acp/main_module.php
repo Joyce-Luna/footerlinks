@@ -23,7 +23,7 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $auth, $template, $cache, $request; 
+		global $db, $user, $auth, $template, $cache, $request;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 		global $table_prefix, $phpEx;
 
@@ -33,7 +33,7 @@ class main_module
 		$this->page_title = $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request = $request;
 		add_form_key('footerlinks/acp_footerlinks');
-//BLOCK 1 
+//BLOCK 1
 		$sql = 'SELECT fl_link1, fl_link_text1, footerlinks_id
 		FROM ' . FOOTERLINKS_TABLE;
 		$result = $db->sql_query($sql);
@@ -112,18 +112,18 @@ class main_module
 			}
 
 			function parseurl($fl_url)
-			{ 
-				if (!preg_match("@^[hf]tt?ps?://@", $fl_url)) 
-				{
+			{
+				if (!preg_match("@^[hf]tt?ps?://@", $fl_url))
+					{
 				$fl_url = "http://" . $fl_url;
 				}
 				return $fl_url;
 			}
-// TRUNCATE 
+// TRUNCATE
 			$db->sql_query('TRUNCATE TABLE ' . FOOTERLINKS_TABLE);
-// ID EXIST?
+			// ID EXIST?
 			if (!$row['footerlinks_id'])
-			{ 
+			{
 				$sql_arr_id = array(
 					'footerlinks_id'	=> '1',
 				);
@@ -139,7 +139,7 @@ class main_module
 			while($i < count($fl_link1))
 			{
 				$fl_link1[$i] = parseurl($fl_link1[$i]);
- 
+
 				$sql_ary1 = array(
 				'fl_link1' 			=> $fl_link1[$i],
 				'fl_link_text1'		=> $fl_link_text1[$i],
@@ -173,7 +173,7 @@ class main_module
 			while($i < count($fl_link3) && (!empty($fl_link3[$i])))
 			{
 				$fl_link3[$i] = parseurl($fl_link3[$i]);
-				
+
 				$sql_ary3 = array(
 				'fl_link3' 			=> $fl_link3[$i],
 				'fl_link_text3'		=> $fl_link_text3[$i],
@@ -221,5 +221,3 @@ class main_module
 		));
 	}
 }
-
-?>
