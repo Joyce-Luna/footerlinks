@@ -30,7 +30,7 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 	$db->sql_freeresult($result);
 
 	if ($fl_data['fl_enable'])
-	{ 
+	{
 		$template->assign_vars(array(
 			'FL_ENABLE'			=> $fl_data['fl_enable'],
 			'FL_EXT_LINK'		=> $fl_data['fl_ext_link'],
@@ -42,7 +42,7 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 			'FL_TITLE_CAT3'		=> $fl_data['fl_title_cat3'],
 		));
 //Block 1
-		if ($fl_data['fl_enable_b1']) 
+		if ($fl_data['fl_enable_b1'])
 		{
 			$sql = 'SELECT fl_title_cat1,fl_link1, fl_link_text1
 			FROM ' . 'phpbb_footerlinks';
@@ -51,7 +51,7 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 			while ($row = $db->sql_fetchrow($result))
 			{
 			if (!empty($row['fl_link1']))
-				{ 
+				{
 					$template->assign_block_vars('fl_links1', array(
 					'FL_LINK1'			=> $row['fl_link1'],
 					'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
@@ -61,7 +61,7 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 		}
 //Block 3
 		if ($fl_data['fl_enable_b2'])
-		{ 
+		{
 			$sql = 'SELECT fl_title_cat2,fl_link2, fl_link_text2
 			FROM ' . 'phpbb_footerlinks';
 			$result = $db->sql_query($sql);
@@ -79,7 +79,7 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 		}
 //Block 3
 		if ($fl_data['fl_enable_b3'])
-		{ 
+		{
 			$sql = 'SELECT fl_title_cat3,fl_link3, fl_link_text3
 			FROM ' . 'phpbb_footerlinks';
 			$result = $db->sql_query($sql);
@@ -96,4 +96,3 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 			};
 		}
 	}
-
