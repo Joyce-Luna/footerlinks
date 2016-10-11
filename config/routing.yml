@@ -1,3 +1,0 @@
-footerlinks_controller:
-    pattern: /footerlinks/{name}
-    defaults: { _controller: joyceluna.footerlinks.controller:handle}
