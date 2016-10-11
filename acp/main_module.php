@@ -13,7 +13,6 @@
 * @ignore
 */
 namespace joyceluna\footerlinks\acp;
-
 /**
 * @package acp
 */
