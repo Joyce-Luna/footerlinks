@@ -41,59 +41,59 @@ if ($fl_data['fl_enable'])
 		'FL_TITLE_CAT2'		=> $fl_data['fl_title_cat2'],
 		'FL_TITLE_CAT3'		=> $fl_data['fl_title_cat3'],
 	));
-//Block 1
-if ($fl_data['fl_enable_b1'])
-{
-	$sql = 'SELECT fl_title_cat1,fl_link1, fl_link_text1
-	FROM ' . 'phpbb_footerlinks';
-	$result = $db->sql_query($sql);
-
-	while ($row = $db->sql_fetchrow($result))
+	//Block 1
+	if ($fl_data['fl_enable_b1'])
 	{
-	if (!empty($row['fl_link1']))
+		$sql = 'SELECT fl_title_cat1,fl_link1, fl_link_text1
+		FROM ' . 'phpbb_footerlinks';
+		$result = $db->sql_query($sql);
+
+		while ($row = $db->sql_fetchrow($result))
 		{
-			$template->assign_block_vars('fl_links1', array(
-			'FL_LINK1'			=> $row['fl_link1'],
+			if (!empty($row['fl_link1']))
+			{
+				$template->assign_block_vars('fl_links1', array(
+				'FL_LINK1'			=> $row['fl_link1'],
 			'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
-			));
+				));
+			};
 		};
-	};
-}
-//Block 3
-if ($fl_data['fl_enable_b2'])
-{
-	$sql = 'SELECT fl_title_cat2,fl_link2, fl_link_text2
-	FROM ' . 'phpbb_footerlinks';
-	$result = $db->sql_query($sql);
-
-	while (!empty($row = $db->sql_fetchrow($result)))
+	}
+	//Block 3
+	if ($fl_data['fl_enable_b2'])
 	{
-		if (!empty($row['fl_link2']))
+		$sql = 'SELECT fl_title_cat2,fl_link2, fl_link_text2
+		FROM ' . 'phpbb_footerlinks';
+		$result = $db->sql_query($sql);
+
+		while (!empty($row = $db->sql_fetchrow($result)))
 		{
-			$template->assign_block_vars('fl_links2', array(
-			'FL_LINK2'			=> $row['fl_link2'],
-			'FL_LINK_TEXT2'		=> $row['fl_link_text2'],
-			));
+			if (!empty($row['fl_link2']))
+			{
+				$template->assign_block_vars('fl_links2', array(
+				'FL_LINK2'			=> $row['fl_link2'],
+				'FL_LINK_TEXT2'		=> $row['fl_link_text2'],
+				));
+			};
 		};
-	};
-}
-//Block 3
-if ($fl_data['fl_enable_b3'])
-{
-	$sql = 'SELECT fl_title_cat3,fl_link3, fl_link_text3
-	FROM ' . 'phpbb_footerlinks';
-	$result = $db->sql_query($sql);
-
-	while ($row = $db->sql_fetchrow($result))
+	}
+	//Block 3
+	if ($fl_data['fl_enable_b3'])
 	{
-		if (!empty($row['fl_link3']))
+		$sql = 'SELECT fl_title_cat3,fl_link3, fl_link_text3
+		FROM ' . 'phpbb_footerlinks';
+		$result = $db->sql_query($sql);
+
+		while ($row = $db->sql_fetchrow($result))
 		{
-			$template->assign_block_vars('fl_links3', array(
-				'FL_LINK3'			=> $row['fl_link3'],
-				'FL_LINK_TEXT3'		=> $row['fl_link_text3'],
-			));
-		}
-	};
-}
+			if (!empty($row['fl_link3']))
+			{
+				$template->assign_block_vars('fl_links3', array(
+					'FL_LINK3'			=> $row['fl_link3'],
+					'FL_LINK_TEXT3'		=> $row['fl_link_text3'],
+				));
+			}
+		};
+	}
 }
 ?>
