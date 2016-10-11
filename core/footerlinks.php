@@ -96,3 +96,4 @@ global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 			};
 		}
 	}
+?>
