@@ -42,7 +42,7 @@ class main_module
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-		if (!empty($row['fl_link1']))
+			if (!empty($row['fl_link1']))
 			{
 				$count1 = false;
 				$template->assign_block_vars('fl_links1', array(
@@ -115,8 +115,8 @@ class main_module
 			function parseurl($fl_url)
 			{
 				if (!preg_match("@^[hf]tt?ps?://@", $fl_url))
-					{
-				$fl_url = "http://" . $fl_url;
+				{
+					$fl_url = "http://" . $fl_url;
 				}
 				return $fl_url;
 			}
@@ -137,7 +137,7 @@ class main_module
 			$fl_link1 = array_merge( array_filter($fl_link1));
 
 			$i = 0;
-			while($i < count($fl_link1))
+			while ($i < count($fl_link1))
 			{
 				$fl_link1[$i] = parseurl($fl_link1[$i]);
 
@@ -154,7 +154,7 @@ class main_module
 			$fl_link2 = array_merge( array_filter($fl_link2));
 
 			$i = 0;
-			while($i < count($fl_link2))
+			while ($i < count($fl_link2))
 			{
 				$fl_link2[$i] = parseurl($fl_link2[$i]);
 
@@ -171,7 +171,7 @@ class main_module
 			$fl_link3 = array_merge( array_filter($fl_link3));
 
 			$i = 0;
-			while($i < count($fl_link3) && (!empty($fl_link3[$i])))
+			while ($i < count($fl_link3) && (!empty($fl_link3[$i])))
 			{
 				$fl_link3[$i] = parseurl($fl_link3[$i]);
 
