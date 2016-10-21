@@ -1,6 +1,6 @@
 ### 						Readme English / German 
 
-# phpBB 3.2 Extension - Footerlinks
+# phpBB 3.1 Extension - Footerlinks
 <img src="https://api.travis-ci.org/Joyce-Luna/footerlinks.svg?branch=master">
 
 - License [GPLv2](license.txt)
@@ -38,7 +38,7 @@ Each Block can not be activated if there is no link added
 
 #German
 
-# phpBB 3.2 Extension - Footerlinks
+# phpBB 3.1 Extension - Footerlinks
 - Lizenz [GPLv2] (license.txt)
 
 Footerlinks erstellt 2016 Joyce&Luna von phpBB-Style-Design.de ( https://phpbb-style-design.de )
