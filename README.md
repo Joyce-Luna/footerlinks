@@ -1,6 +1,7 @@
 ### 						Readme English / German 
 
 # phpBB 3.1 Extension - Footerlinks
+
 <img src="https://api.travis-ci.org/Joyce-Luna/footerlinks.svg?branch=master">
 
 - License [GPLv2](license.txt)
