@@ -4,7 +4,7 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.1
+* @ver 1.3.0
 *
 */
 
@@ -19,15 +19,10 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
-global $phpbb_root_path, $phpEx, $db, $auth, $user, $template, $table_prefix;
-
-if (!defined('FOOTERLINKS_TABLE'))
-{
-	define('FOOTERLINKS_TABLE', $table_prefix . 'footerlinks');
-}
+global $phpbb_root_path, $phpEx, $db, $auth, $user, $template;
 
 $sql = 'SELECT fl_enable,fl_ext_link,fl_enable_b1,fl_enable_b2,fl_enable_b3,fl_title_cat1,fl_title_cat2,fl_title_cat3
-FROM '. FOOTERLINKS_TABLE . '
+FROM '.'phpbb_footerlinks'.'
 WHERE footerlinks_id = "1"';
 
 $result = $db->sql_query_limit($sql, 1);
@@ -50,7 +45,7 @@ if ($fl_data['fl_enable'])
 	if ($fl_data['fl_enable_b1'])
 	{
 		$sql = 'SELECT fl_title_cat1,fl_link1, fl_link_text1
-		FROM '. FOOTERLINKS_TABLE;
+		FROM ' . 'phpbb_footerlinks';
 		$result = $db->sql_query($sql);
 
 		while ($row = $db->sql_fetchrow($result))
@@ -59,7 +54,7 @@ if ($fl_data['fl_enable'])
 			{
 				$template->assign_block_vars('fl_links1', array(
 				'FL_LINK1'			=> $row['fl_link1'],
-				'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
+			'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
 				));
 			};
 		};
@@ -68,7 +63,7 @@ if ($fl_data['fl_enable'])
 	if ($fl_data['fl_enable_b2'])
 	{
 		$sql = 'SELECT fl_title_cat2,fl_link2, fl_link_text2
-		FROM '. FOOTERLINKS_TABLE;
+		FROM ' . 'phpbb_footerlinks';
 		$result = $db->sql_query($sql);
 
 		while (!empty($row = $db->sql_fetchrow($result)))
@@ -86,7 +81,7 @@ if ($fl_data['fl_enable'])
 	if ($fl_data['fl_enable_b3'])
 	{
 		$sql = 'SELECT fl_title_cat3,fl_link3, fl_link_text3
-		FROM '. FOOTERLINKS_TABLE;
+		FROM ' . 'phpbb_footerlinks';
 		$result = $db->sql_query($sql);
 
 		while ($row = $db->sql_fetchrow($result))
