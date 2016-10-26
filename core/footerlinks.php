@@ -21,10 +21,10 @@ if (!defined('IN_PHPBB'))
 
 global $phpbb_root_path, $phpEx, $db, $auth, $user, $template, $table_prefix;
 
-define('FOOTERLINKS_TABLE', $table_prefix . 'footerlinks');
+$footerlinks_table = $table_prefix . 'footerlinks';
 
 $sql = 'SELECT fl_enable,fl_ext_link,fl_enable_b1,fl_enable_b2,fl_enable_b3,fl_title_cat1,fl_title_cat2,fl_title_cat3
-FROM '. FOOTERLINKS_TABLE . '
+FROM '. $footerlinks_table . '
 WHERE footerlinks_id = "1"';
 
 $result = $db->sql_query_limit($sql, 1);
@@ -47,7 +47,7 @@ if ($fl_data['fl_enable'])
 	if ($fl_data['fl_enable_b1'])
 	{
 		$sql = 'SELECT fl_title_cat1,fl_link1, fl_link_text1
-		FROM '. FOOTERLINKS_TABLE;
+		FROM '. $footerlinks_table;
 		$result = $db->sql_query($sql);
 
 		while ($row = $db->sql_fetchrow($result))
@@ -65,7 +65,7 @@ if ($fl_data['fl_enable'])
 	if ($fl_data['fl_enable_b2'])
 	{
 		$sql = 'SELECT fl_title_cat2,fl_link2, fl_link_text2
-		FROM '. FOOTERLINKS_TABLE;
+		FROM '. $footerlinks_table;
 		$result = $db->sql_query($sql);
 
 		while (!empty($row = $db->sql_fetchrow($result)))
@@ -83,7 +83,7 @@ if ($fl_data['fl_enable'])
 	if ($fl_data['fl_enable_b3'])
 	{
 		$sql = 'SELECT fl_title_cat3,fl_link3, fl_link_text3
-		FROM '. FOOTERLINKS_TABLE;
+		FROM '. $footerlinks_table;
 		$result = $db->sql_query($sql);
 
 		while ($row = $db->sql_fetchrow($result))
