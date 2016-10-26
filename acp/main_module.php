@@ -5,7 +5,7 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.0
+* @ver 1.4.0
 *
 */
 
@@ -24,9 +24,7 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $auth, $template, $cache, $request, $phpbb_log;
-		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
-		global $table_prefix, $phpEx;
+		global $db, $user, $template, $request, $phpbb_log, $config, $table_prefix;
 
 		define('FOOTERLINKS_TABLE', $table_prefix . 'footerlinks');
 
