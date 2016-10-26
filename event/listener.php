@@ -50,7 +50,7 @@ class listener implements EventSubscriberInterface
 
 	public function footerlinks($event)
 	{
-		global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $table_prefix;
+		global $config, $db, $user, $auth, $template, $phpbb_root_path, $table_prefix;
 	
 		$footerlinks_table = $table_prefix . 'footerlinks';
 
@@ -73,7 +73,6 @@ class listener implements EventSubscriberInterface
 				'FL_TITLE_CAT3'		=> $fl_data['fl_title_cat3'],
 			));
 
-
 			while ($row = $db->sql_fetchrow($result))
 			{
 				if ($fl_data['fl_enable_b1'])
@@ -86,7 +85,7 @@ class listener implements EventSubscriberInterface
 						));
 					};
 				}
-					
+
 				if ($fl_data['fl_enable_b2'])
 				{
 					if (!empty($row['fl_link2']))
@@ -97,7 +96,7 @@ class listener implements EventSubscriberInterface
 						));
 					};
 				};
-					
+
 				if ($fl_data['fl_enable_b3'])
 				{
 					if (!empty($row['fl_link3']))
