@@ -51,7 +51,7 @@ class listener implements EventSubscriberInterface
 	public function footerlinks($event)
 	{
 		global $config, $db, $user, $auth, $template, $phpbb_root_path, $table_prefix;
-	
+
 		$footerlinks_table = $table_prefix . 'footerlinks';
 
 		$sql = 'SELECT * 
