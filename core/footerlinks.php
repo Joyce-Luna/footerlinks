@@ -21,10 +21,7 @@ if (!defined('IN_PHPBB'))
 
 global $phpbb_root_path, $phpEx, $db, $auth, $user, $template, $table_prefix;
 
-if (!defined('FOOTERLINKS_TABLE'))
-{
-	define('FOOTERLINKS_TABLE', $table_prefix . 'footerlinks');
-}
+define('FOOTERLINKS_TABLE', $table_prefix . 'footerlinks');
 
 $sql = 'SELECT fl_enable,fl_ext_link,fl_enable_b1,fl_enable_b2,fl_enable_b3,fl_title_cat1,fl_title_cat2,fl_title_cat3
 FROM '. FOOTERLINKS_TABLE . '
