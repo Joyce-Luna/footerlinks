@@ -4,7 +4,7 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.0.0
+* @ver 1.3.0
 *
 */
 namespace joyceluna\footerlinks\event;
@@ -22,7 +22,7 @@ class listener implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'						=> 'load_language_on_setup',
+			'core.user_setup'			=> 'load_language_on_setup',
 			'core.page_header'			=> 'footerlinks',
 		);
 	}
@@ -48,12 +48,10 @@ class listener implements EventSubscriberInterface
 	{
 		$this->user->add_lang_ext('joyceluna/footerlinks', 'lang_footerlinks');
 	}
-	
+
 	public function footerlinks($event)
 	{
-	
+
 		include 'ext/joyceluna/footerlinks/core/footerlinks.php';
 	}
-	
 }
-?>
