@@ -4,7 +4,7 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.0
+* @ver 1.3.1
 *
 */
 
@@ -14,7 +14,7 @@ class init extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.0', '>=');
+		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.1', '>=');
 
 	}
 
