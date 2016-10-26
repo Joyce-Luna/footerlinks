@@ -4,7 +4,7 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.1
+* @ver 1.3.0
 *
 */
 namespace joyceluna\footerlinks\event;
@@ -51,7 +51,8 @@ class listener implements EventSubscriberInterface
 
 	public function footerlinks($event)
 	{
-		global $phpbb_root_path, $phpEx;
-		include($phpbb_root_path . 'ext/joyceluna/footerlinks/core/footerlinks.' . $phpEx);
+
+		include 'ext/joyceluna/footerlinks/core/footerlinks.php';
 	}
 }
+
