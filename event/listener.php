@@ -55,4 +55,3 @@ class listener implements EventSubscriberInterface
 		include 'ext/joyceluna/footerlinks/core/footerlinks.php';
 	}
 }
-
