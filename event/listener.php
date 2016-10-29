@@ -55,7 +55,8 @@ class listener implements EventSubscriberInterface
 	* @param string								$table_prefix
 	*/
 
-	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, $phpbb_root_path, $php_ext, $table_prefix)
+	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db,
+	\phpbb\request\request $request, $phpbb_root_path, $php_ext, $table_prefix)
 	{
 		$this->template = $template;
 		$this->user = $user;
