@@ -92,16 +92,16 @@ class listener implements EventSubscriberInterface
 
 	public function footerlinks($event)
 	{
-		if (!defined('FOOTERLINKS')) 
+		if (!defined('FOOTERLINKS'))
 		{
-			$footerlinks_table = $this->table_prefix . 'footerlinks'; 
-			define('FOOTERLINKS', $footerlinks_table); 
+			$footerlinks_table = $this->table_prefix . 'footerlinks';
+			define('FOOTERLINKS', $footerlinks_table);
 		}
 
 		$sql = 'SELECT * 
 		FROM '. $footerlinks_table;
 
-		$result = $this->db->sql_query($sql);;
+		$result = $this->db->sql_query($sql);
 		$fl_data = $this->db->sql_fetchrow($result);
 
 		if ($fl_data['fl_enable'])
