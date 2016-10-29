@@ -5,7 +5,7 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.4.0
+* @ver 1.3.1
 *
 */
 
@@ -22,18 +22,26 @@ class main_module
 {
 	var $u_action;
 
+	protected $db, $user, $template, $request, $phpbb_log, $config, $table_prefix,$footerlinks_table;
+
 	function main($id, $mode)
 	{
 		global $db, $user, $template, $request, $phpbb_log, $config, $table_prefix;
 
-		define('FOOTERLINKS_TABLE', $table_prefix . 'footerlinks');
-
 		$this->tpl_name = 'acp_footerlinks';
 		$this->page_title = $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request = $request;
+		$this->table_prefix = $table_prefix;
 		$this->log = $phpbb_log;
+
+		if (!defined('FOOTERLINKS_TABLE')) 
+		{
+			$footerlinks_table = $this->table_prefix . 'footerlinks'; 
+			define('FOOTERLINKS_TABLE', $this->table_prefix . 'footerlinks'); 
+		}
+
 		add_form_key('footerlinks/acp_footerlinks');
-//BLOCK 1
+
 		$sql = 'SELECT fl_link1, fl_link_text1, footerlinks_id
 		FROM ' . FOOTERLINKS_TABLE;
 		$result = $db->sql_query($sql);
@@ -56,7 +64,7 @@ class main_module
 			'FL_LINK1'			=> ' ',
 			));
 		};
-//BLOCK 2
+
 		$sql = 'SELECT fl_link2, fl_link_text2
 		FROM ' . FOOTERLINKS_TABLE;
 		$result = $db->sql_query($sql);
@@ -79,7 +87,7 @@ class main_module
 			'FL_LINK2'			=> ' ',
 			));
 		};
-//BLOCK 3
+
 		$sql = 'SELECT fl_link3, fl_link_text3
 		FROM ' . FOOTERLINKS_TABLE;
 		$result = $db->sql_query($sql);
@@ -102,7 +110,7 @@ class main_module
 			'FL_LINK3'			=> ' ',
 			));
 		};
-// SUBMIT
+
 		$submit = $request->is_set_post('submit');
 		if ($submit)
 		{
@@ -119,9 +127,9 @@ class main_module
 				}
 				return $fl_url;
 			}
-// TRUNCATE
+
 			$db->sql_query('TRUNCATE TABLE ' . FOOTERLINKS_TABLE);
-			// ID EXIST?
+
 			if (!$row['footerlinks_id'])
 			{
 				$sql_arr_id = array(
@@ -130,7 +138,7 @@ class main_module
 				$sql = 'INSERT INTO ' . FOOTERLINKS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_arr_id);
 				$db->sql_query($sql);
 			};
-// Block 1
+
 			$fl_link1 		= utf8_normalize_nfc($this->request->variable('fl_link1', array('' => ''),true));
 			$fl_link_text1 	= utf8_normalize_nfc($this->request->variable('fl_link_text1', array('' => ''),true));
 			$fl_link1 = array_merge( array_filter($fl_link1));
@@ -147,7 +155,7 @@ class main_module
 				$db->sql_multi_insert(FOOTERLINKS_TABLE, $sql_ary1);
 				$i++;
 			}
-// Block 2
+
 			$fl_link2 		= utf8_normalize_nfc($this->request->variable('fl_link2', array('' => ''),true));
 			$fl_link_text2 	= utf8_normalize_nfc($this->request->variable('fl_link_text2', array('' => ''),true));
 			$fl_link2 = array_merge( array_filter($fl_link2));
@@ -164,7 +172,7 @@ class main_module
 				$db->sql_multi_insert(FOOTERLINKS_TABLE, $sql_ary2);
 				$i++;
 			}
-// Block 3
+
 			$fl_link3 		= utf8_normalize_nfc($this->request->variable('fl_link3', array('' => ''),true));
 			$fl_link_text3 	= utf8_normalize_nfc($this->request->variable('fl_link_text3', array('' => ''),true));
 			$fl_link3 = array_merge( array_filter($fl_link3));
