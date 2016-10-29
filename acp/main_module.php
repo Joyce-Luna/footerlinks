@@ -34,10 +34,10 @@ class main_module
 		$this->table_prefix = $table_prefix;
 		$this->log = $phpbb_log;
 
-		if (!defined('FOOTERLINKS_TABLE')) 
+		if (!defined('FOOTERLINKS_TABLE'))
 		{
-			$footerlinks_table = $this->table_prefix . 'footerlinks'; 
-			define('FOOTERLINKS_TABLE', $this->table_prefix . 'footerlinks'); 
+			$footerlinks_table = $this->table_prefix . 'footerlinks';
+			define('FOOTERLINKS_TABLE', $this->table_prefix . 'footerlinks');
 		}
 
 		add_form_key('footerlinks/acp_footerlinks');
