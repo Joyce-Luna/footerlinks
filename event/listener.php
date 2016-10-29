@@ -1,17 +1,14 @@
 <?php
 /**
 *
-* @package phpBB Extension - Footerlinks
-* @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
+* @package profileSideSwitcher
+* @copyright (c) 2014 Татьяна5
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.1
 *
 */
-namespace joyceluna\footerlinks\event;
 
-/**
-* @ignore
-*/
+namespace tatiana5\profileSideSwitcher\event;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -39,24 +36,19 @@ class listener implements EventSubscriberInterface
 
 	/** @var string */
 	protected $ext_name;
-	
-	/** @var string */
- 	protected $table_prefix;
 
 	/**
 	* Constructor
 	*
-	* @param \phpbb\template\template          	$template
-	* @param \phpbb\user                       	$user
-	* @param \phpbb\db\driver\driver_interface 	$db
-	* @param \phpbb\request\request            	$request
-	* @param string                            	$phpbb_root_path
-	* @param string                            	$php_ext
-	* @param string								$table_prefix
+	* @param \phpbb\template\template          $template
+	* @param \phpbb\user                       $user
+	* @param \phpbb\db\driver\driver_interface $db
+	* @param \phpbb\request\request            $request
+	* @param string                            $phpbb_root_path
+	* @param string                            $php_ext
 	*/
 
-	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db,
-	\phpbb\request\request $request, $phpbb_root_path, $php_ext, $table_prefix)
+	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, $phpbb_root_path, $php_ext)
 	{
 		$this->template = $template;
 		$this->user = $user;
@@ -64,95 +56,128 @@ class listener implements EventSubscriberInterface
 		$this->request = $request;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
-		$this->table_prefix = $table_prefix;
+		$this->ext_name = "tatiana5/profileSideSwitcher";
 	}
 
-	public static function getSubscribedEvents()
+	/**
+	* Assign functions defined in this class to event listeners in the core
+	*
+	* @return array
+	* @static
+	* @access public
+	*/
+	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'			=> 'load_language_on_setup',
-			'core.page_header'			=> 'footerlinks',
+			'core.user_setup'							=> 'load_language_on_setup',
+			'core.page_header_after'					=> 'generate_paths',
+			'core.viewtopic_modify_page_title'			=> 'profile_side_switcher',
+			'core.ucp_prefs_view_data'					=> 'ucp_profile_side_switcher_get',
+			'core.ucp_prefs_view_update_data'			=> 'ucp_profile_side_switcher_set',
+			'core.acp_users_prefs_modify_data'			=> 'acp_profile_side_switcher_get',
+			'core.acp_users_prefs_modify_template_data'	=> 'acp_profile_side_switcher_template',
+			'core.acp_users_prefs_modify_sql'			=> 'ucp_profile_side_switcher_set', // For the ACP.
 		);
 	}
-	
+
 	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = array(
-			'ext_name' => 'joyceluna/footerlinks',
-			'lang_set' => 'lang_footerlinks',
+			'ext_name' => 'tatiana5/profileSideSwitcher',
+			'lang_set' => 'profile_side_switcher',
 		);
 		$event['lang_set_ext'] = $lang_set_ext;
+
+		$this->template->assign_vars(array(
+			'S_PSS_LEFT'	=> $this->user->data['allow_pss_left'],
+		));
 	}
 
-	public function page_header($event)
+	public function generate_paths($event)
 	{
-		$this->user->add_lang_ext('joyceluna/footerlinks', 'lang_footerlinks');
-	}
-
-	public function footerlinks($event)
-	{
-		if (!defined('FOOTERLINKS')) 
-		{ 
-			$footerlinks_table = $this->table_prefix . 'footerlinks'; 
- 			define('FOOTERLINKS', $footerlinks_table); 
- 		} 
-
-		$sql = 'SELECT * 
-		FROM '. $footerlinks_table;
-
-		$result = $this->db->sql_query($sql);;
-		$fl_data = $this->db->sql_fetchrow($result);
-
-		if ($fl_data['fl_enable'])
+		$ext_style_path = $this->phpbb_root_path . 'ext/' . $this->ext_name . '/styles/';
+		$style_lang_path = rawurlencode($this->user->style['style_path']) . '/theme/' . $this->user->lang_name . '/profile_side_switcher.css';
+		if (!file_exists($ext_style_path . $style_lang_path))
 		{
-			$this->template->assign_vars(array(
-				'FL_ENABLE'			=> $fl_data['fl_enable'],
-				'FL_EXT_LINK'		=> $fl_data['fl_ext_link'],
-				'FL_ENABLE_B1'		=> $fl_data['fl_enable_b1'],
-				'FL_ENABLE_B2'		=> $fl_data['fl_enable_b2'],
-				'FL_ENABLE_B3'		=> $fl_data['fl_enable_b3'],
-				'FL_TITLE_CAT1'		=> $fl_data['fl_title_cat1'],
-				'FL_TITLE_CAT2'		=> $fl_data['fl_title_cat2'],
-				'FL_TITLE_CAT3'		=> $fl_data['fl_title_cat3'],
-			));
-
-			while ($row = $this->db->sql_fetchrow($result))
+			// Fallback to English language.
+			$style_lang_path = rawurlencode($this->user->style['style_path']) . '/theme/en/profile_side_switcher.css';
+			if (!file_exists($ext_style_path . $style_lang_path))
 			{
-				if ($fl_data['fl_enable_b1'])
-				{
-					if (!empty($row['fl_link1']))
-					{
-						$this->template->assign_block_vars('fl_links1', array(
-						'FL_LINK1'			=> $row['fl_link1'],
-						'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
-						));
-					};
-				}
-
-				if ($fl_data['fl_enable_b2'])
-				{
-					if (!empty($row['fl_link2']))
-					{
-						$this->template->assign_block_vars('fl_links2', array(
-							'FL_LINK2'			=> $row['fl_link2'],
-						'FL_LINK_TEXT2'		=> $row['fl_link_text2'],
-						));
-					};
-				};
-
-				if ($fl_data['fl_enable_b3'])
-				{
-					if (!empty($row['fl_link3']))
-					{
-						$this->template->assign_block_vars('fl_links3', array(
-							'FL_LINK3'			=> $row['fl_link3'],
-							'FL_LINK_TEXT3'		=> $row['fl_link_text3'],
-						));
-					}
-				}
+				// Fallback to prosilver (prosilver does not need to be installed on the board; but the style file for prosilver exists in this extension).
+				$style_lang_path = 'prosilver/theme/en/profile_side_switcher.css';
 			}
 		}
-		$this->db->sql_freeresult($result);
+
+		$this->template->assign_vars(array(
+			'T_PSS_STYLESHEET_LANG_LINK'	=> $style_lang_path,
+		));
+	}
+
+	public function profile_side_switcher($event)
+	{
+		$topic_data = $event['topic_data'];
+		$forum_id = $event['forum_id'];
+
+		if ($this->request->is_set('pss'))
+		{
+			$pss_left = $this->request->variable('pss', 0);
+			$sql = 'UPDATE ' . USERS_TABLE . ' SET allow_pss_left = ' . (int) $pss_left . ' WHERE user_id = ' . (int) $this->user->data['user_id'];
+			$result = $this->db->sql_query($sql);
+
+			if ($this->request->is_ajax())
+			{
+				$json_response = new \phpbb\json_response;
+				$json_response->send(array(
+					'success'		=> ($result) ? true : false,
+				));
+			}
+
+			$this->db->sql_freeresult($result);
+		}
+
+		$this->template->assign_vars(array(
+			'PSS_URL_LEFT'		=> append_sid("{$this->phpbb_root_path}viewtopic.$this->php_ext", 'f=' . $forum_id . '&amp;t='. $topic_data['topic_id'] . '&amp;pss=1'),
+			'PSS_URL_RIGHT'		=> append_sid("{$this->phpbb_root_path}viewtopic.$this->php_ext", 'f=' . $forum_id . '&amp;t='. $topic_data['topic_id'] . '&amp;pss=0'),
+		));
+	}
+
+	public function ucp_profile_side_switcher_get($event)
+	{
+		$data = $event['data'];
+		$data = array_merge($data, array(
+			'allow_pss_left'		=> $this->request->variable('pss_left', (int) (isset($this->user->data['allow_pss_left']) ? $this->user->data['allow_pss_left'] : 0))
+		));
+		$event['data'] = $data;
+	}
+
+	public function acp_profile_side_switcher_get($event)
+	{
+		$data = $event['data'];
+		$user_row = $event['user_row'];
+		$data = array_merge($data, array(
+			'allow_pss_left'		=> $this->request->variable('pss_left', (int) (isset($user_row['allow_pss_left']) ? $user_row['allow_pss_left'] : 0))
+		));
+		$event['data'] = $data;
+	}
+
+	public function acp_profile_side_switcher_template($event)
+	{
+		$data = $event['data'];
+		$user_prefs_data = $event['user_prefs_data'];
+		$user_prefs_data = array_merge($user_prefs_data, array(
+			'S_USER_PSS_LEFT'		=> $data['allow_pss_left'],
+		));
+		$event['user_prefs_data'] = $user_prefs_data;
+	}
+
+	public function ucp_profile_side_switcher_set($event)
+	{
+		$data = $event['data'];
+		$sql_ary = $event['sql_ary'];
+		$sql_ary = array_merge($sql_ary, array(
+			'allow_pss_left'	=> $data['allow_pss_left'],
+		));
+		$event['sql_ary'] = $sql_ary;
 	}
 }
