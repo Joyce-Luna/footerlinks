@@ -102,7 +102,7 @@ class main_module
 
 			function parseurl($fl_url)
 			{
-				if (!preg_match("@^[hf]tt?ps?://@", $fl_url)) 
+				if (!preg_match("@^[hf]tt?ps?://@", $fl_url))
 				{
 					$fl_url = "http://" . $fl_url;
 				}
