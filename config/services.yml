@@ -1,3 +1,5 @@
+parameters:
+    tables.footerlinks_table: %core.table_prefix%footerlinks
 services:
     joyceluna.footerlinks.listener:
         class: joyceluna\footerlinks\event\listener
@@ -6,8 +8,6 @@ services:
         - '@user'
         - '@dbal.conn'
         - '@request'
-        - '%core.root_path%'
-        - '%core.php_ext%'
-        - '%core.table_prefix%'
+        - '%tables.footerlinks_table%'
         tags:
             - { name: event.listener }
