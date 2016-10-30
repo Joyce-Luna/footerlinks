@@ -1,15 +1,13 @@
 services:
-    joyceluna.footerlinks.controller:
-        class: joyceluna\footerlinks\controller\main
-        arguments:
-            - @config
-            - @controller.helper
-            - @template
-            - @user
     joyceluna.footerlinks.listener:
         class: joyceluna\footerlinks\event\listener
         arguments:
-            - @controller.helper
-            - @template
+        - '@template'
+        - '@user'
+        - '@dbal.conn'
+        - '@request'
+        - '%core.root_path%'
+        - '%core.php_ext%'
+        - '%core.table_prefix%'
         tags:
             - { name: event.listener }
