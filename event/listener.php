@@ -31,18 +31,6 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\request\request */
 	protected $request;
 
-	/** @var string */
-	protected $phpbb_root_path;
-
-	/** @var string */
-	protected $php_ext;
-
-	/** @var string */
-	protected $ext_name;
-
-	/** @var string */
-	protected $table_prefix;
-
 	/**
 	* Constructor
 	*
@@ -50,58 +38,43 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\user                       	$user
 	* @param \phpbb\db\driver\driver_interface 	$db
 	* @param \phpbb\request\request            	$request
-	* @param string                            	$phpbb_root_path
-	* @param string                            	$php_ext
-	* @param string								$table_prefix
+	* @param string								$footerlinks_table
 	*/
 
 	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db,
-	\phpbb\request\request $request, $phpbb_root_path, $php_ext, $table_prefix)
+	\phpbb\request\request $request, $footerlinks_table)
 	{
 		$this->template = $template;
 		$this->user = $user;
 		$this->db = $db;
 		$this->request = $request;
-		$this->phpbb_root_path = $phpbb_root_path;
-		$this->php_ext = $php_ext;
-		$this->table_prefix = $table_prefix;
+		$this->footerlinks_table = $footerlinks_table;
 	}
 
 	public static function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'			=> 'load_language_on_setup',
-			'core.page_header'			=> 'footerlinks',
+			'core.user_setup'  => 'load_language_on_setup',
+			'core.page_header' => 'footerlinks',
 		);
 	}
 
 	public function load_language_on_setup($event)
 	{
-		$lang_set_ext = $event['lang_set_ext'];
+		$lang_set_ext 	= $event['lang_set_ext'];
 		$lang_set_ext[] = array(
-			'ext_name' => 'joyceluna/footerlinks',
-			'lang_set' => 'lang_footerlinks',
+			'ext_name'	=> 'joyceluna/footerlinks',
+			'lang_set'	=> 'lang_footerlinks',
 		);
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
-	public function page_header($event)
-	{
-		$this->user->add_lang_ext('joyceluna/footerlinks', 'lang_footerlinks');
-	}
-
 	public function footerlinks($event)
 	{
-		if (!defined('FOOTERLINKS'))
-		{
-			$footerlinks_table = $this->table_prefix . 'footerlinks';
-			define('FOOTERLINKS', $footerlinks_table);
-		}
-
 		$sql = 'SELECT * 
-		FROM '. $footerlinks_table;
+		FROM '. $this->footerlinks_table;
 
-		$result = $this->db->sql_query($sql);
+		$result	 = $this->db->sql_query($sql);
 		$fl_data = $this->db->sql_fetchrow($result);
 
 		if ($fl_data['fl_enable'])
