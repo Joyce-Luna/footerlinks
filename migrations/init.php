@@ -56,7 +56,7 @@ class init extends \phpbb\db\migration\migration
 	{
 		// ADD CONFIG VERSION
 		return array(
-			array('config.add', array('footerlinks_version', '1.3.0')),
+			array('config.add', array('footerlinks_version', '1.3.1')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
 
