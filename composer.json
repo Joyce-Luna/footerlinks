@@ -23,7 +23,7 @@
         },
 		"version-check": {
 			"host": "phpbb-versionscheck.cf",
-			"directory": "https://github.com/Joyce-Luna/footerlinks",
+			"directory": "/Joyce-Luna/footerlinks/master",
 			"filename": "version-check.json"
 		}
 	}
