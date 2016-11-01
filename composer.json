@@ -20,6 +20,11 @@
         "display-name": "Footerlinks",
         "soft-require": {
         "phpbb/phpbb": "3.1 < 3.2"
-        }
+        },
+		"version-check": {
+			"host": "phpbb-versionscheck.cf",
+			"directory": "https://github.com/Joyce-Luna/footerlinks",
+			"filename": "version-check.json"
+		}
 	}
 }
