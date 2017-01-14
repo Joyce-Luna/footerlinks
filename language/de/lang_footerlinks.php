@@ -4,7 +4,6 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.2
 *
 */
 
