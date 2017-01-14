@@ -147,7 +147,7 @@ class main_module
 				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary2));
 				$i++;
 			}
-			
+
 			$fl_link3 		= $this->request->variable('fl_link3', array('' => ''),true);
 			$fl_link_text3 	= $this->request->variable('fl_link_text3', array('' => ''),true);
 			$fl_link3		= array_merge( array_filter($fl_link3));
