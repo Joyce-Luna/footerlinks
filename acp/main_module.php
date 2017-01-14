@@ -26,7 +26,7 @@ class main_module
 	{
 		global $db, $user, $template, $request, $phpbb_log, $config, $phpbb_container, $cache;
 
-$this->cache = $cache;
+		$this->cache = $cache;
 		$this->tpl_name 	= 'acp_footerlinks';
 		$this->page_title 	= $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request 		= $request;
