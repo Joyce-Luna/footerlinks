@@ -74,7 +74,7 @@ class listener implements EventSubscriberInterface
 		$sql = 'SELECT * 
 		FROM '. $this->footerlinks_table;
 
-		$result	 = $this->db->sql_query($sql);
+		$result	 = $this->db->sql_query($sql,86400);
 		$fl_data = $this->db->sql_fetchrow($result);
 
 		if ($fl_data['fl_enable'])
