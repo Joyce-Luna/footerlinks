@@ -199,7 +199,6 @@ class main_module
 		$fl_data = $db->sql_fetchrow($result);
 
 		$template->assign_vars(array(
-			'FL_VERSION'	=> $config['footerlinks_version'],
 			'FL_ENABLE'		=> $fl_data['fl_enable'],
 			'FL_EXT_LINK'	=> $fl_data['fl_ext_link'],
 			'FL_ENABLE_B1'	=> $fl_data['fl_enable_b1'],
