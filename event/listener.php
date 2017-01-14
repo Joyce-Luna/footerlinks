@@ -4,7 +4,6 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.1
 *
 */
 namespace joyceluna\footerlinks\event;
@@ -74,7 +73,7 @@ class listener implements EventSubscriberInterface
 		$sql = 'SELECT * 
 		FROM '. $this->footerlinks_table;
 
-		$result	 = $this->db->sql_query($sql);
+		$result	 = $this->db->sql_query($sql,86400);
 		$fl_data = $this->db->sql_fetchrow($result);
 
 		if ($fl_data['fl_enable'])
