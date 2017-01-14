@@ -23,7 +23,7 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $template, $request, $phpbb_log, $config, $phpbb_container, $cache;
+		global $db, $user, $template, $request, $phpbb_log, $phpbb_container, $cache;
 
 		$this->cache = $cache;
 		$this->tpl_name 	= 'acp_footerlinks';
