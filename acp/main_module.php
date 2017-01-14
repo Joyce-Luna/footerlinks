@@ -22,23 +22,16 @@ class main_module
 {
 	var $u_action;
 
-	protected $db, $user, $template, $request, $phpbb_log, $config, $table_prefix, $footerlinks_table;
-
 	function main($id, $mode)
 	{
-		global $db, $user, $template, $request, $phpbb_log, $config, $table_prefix;
+		global $db, $user, $template, $request, $phpbb_log, $config, $phpbb_container, $cache;
 
+$this->cache = $cache;
 		$this->tpl_name 	= 'acp_footerlinks';
 		$this->page_title 	= $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request 		= $request;
-		$this->table_prefix = $table_prefix;
 		$this->log 			= $phpbb_log;
-
-		if (!defined('FOOTERLINKS_TABLE'))
-		{
-			$footerlinks_table = $this->table_prefix . 'footerlinks';
-			define('FOOTERLINKS_TABLE', $this->table_prefix . 'footerlinks');
-		}
+		$footerlinks_table = $phpbb_container->getParameter('tables.footerlinks_table');
 
 		add_form_key('footerlinks/acp_footerlinks');
 
@@ -109,16 +102,17 @@ class main_module
 				return $fl_url;
 			}
 
-			$db->sql_query('TRUNCATE TABLE ' . FOOTERLINKS_TABLE);
+			$sql = 'DELETE FROM ' . $footerlinks_table ;
+			$db->sql_query($sql);
 
-			if (!$row['footerlinks_id'])
-			{
-				$sql_arr_id = array(
-					'footerlinks_id' => '1',
-				);
-				$sql = 'INSERT INTO ' . FOOTERLINKS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_arr_id);
-				$db->sql_query($sql);
-			};
+			$sql = 'ALTER TABLE ' . $footerlinks_table . ' AUTO_INCREMENT = 1' ;
+			$db->sql_query($sql);
+
+			$sql_arr_id = array(
+				'footerlinks_id' => '1',
+			);
+			$sql = 'INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_arr_id);
+			$db->sql_query($sql);
 
 			$fl_link1 		= $this->request->variable('fl_link1', array('' => ''),true);
 			$fl_link_text1 	= $this->request->variable('fl_link_text1', array('' => ''),true);
@@ -133,7 +127,7 @@ class main_module
 				'fl_link1' 		=> $fl_link1[$i],
 				'fl_link_text1' => $fl_link_text1[$i],
 				);
-				$db->sql_multi_insert(FOOTERLINKS_TABLE, $sql_ary1);
+				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary1));
 				$i++;
 			}
 
@@ -150,10 +144,10 @@ class main_module
 				'fl_link2' 		=> $fl_link2[$i],
 				'fl_link_text2'	=> $fl_link_text2[$i],
 				);
-				$db->sql_multi_insert(FOOTERLINKS_TABLE, $sql_ary2);
+				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary2));
 				$i++;
 			}
-
+			
 			$fl_link3 		= $this->request->variable('fl_link3', array('' => ''),true);
 			$fl_link_text3 	= $this->request->variable('fl_link_text3', array('' => ''),true);
 			$fl_link3		= array_merge( array_filter($fl_link3));
@@ -167,7 +161,7 @@ class main_module
 				'fl_link3' 		=> $fl_link3[$i],
 				'fl_link_text3'	=> $fl_link_text3[$i],
 				);
-				$db->sql_multi_insert(FOOTERLINKS_TABLE, $sql_ary3);
+				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary3));
 				$i++;
 			}
 
@@ -186,10 +180,12 @@ class main_module
 				'fl_title_cat3'	=> $this->request->variable('fl_title_cat3', '',true),
 			);
 
-			$db->sql_query('UPDATE ' . FOOTERLINKS_TABLE . '
+			$db->sql_query('UPDATE ' . $footerlinks_table . '
 				SET ' . $db->sql_build_array('UPDATE', $sql_ary_block) . "
 				WHERE footerlinks_id =  1"
 			);
+
+			$cache->destroy('sql', $footerlinks_table);
 
 			$user_id = $user->data['user_id'];
 			$user_ip = $user->ip;
@@ -198,14 +194,13 @@ class main_module
 			trigger_error($user->lang['FL_SAVED'] . adm_back_link($this->u_action));
 		}
 
-		$sql = 'SELECT fl_enable,fl_ext_link,fl_enable_b1,fl_enable_b2,fl_enable_b3,fl_title_cat1,fl_title_cat2,fl_title_cat3
-		FROM ' . FOOTERLINKS_TABLE . "
-		WHERE footerlinks_id =  1";
+		$sql = 'SELECT *
+		FROM '. $footerlinks_table;
 		$result = $db->sql_query($sql);
 		$fl_data = $db->sql_fetchrow($result);
 
 		$template->assign_vars(array(
-			'FL_VERSION'	=> 'Version: ' . $config['footerlinks_version'],
+			'FL_VERSION'	=> $config['footerlinks_version'],
 			'FL_ENABLE'		=> $fl_data['fl_enable'],
 			'FL_EXT_LINK'	=> $fl_data['fl_ext_link'],
 			'FL_ENABLE_B1'	=> $fl_data['fl_enable_b1'],
