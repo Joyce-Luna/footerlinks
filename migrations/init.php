@@ -4,7 +4,6 @@
 * @package phpBB Extension - Footerlinks
 * @copyright (c) 2016 joyceluna (https://phpbb-style-design.de)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @ver 1.3.1
 *
 */
 
@@ -14,7 +13,7 @@ class init extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.1', '>=');
+		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.2', '>=');
 
 	}
 
@@ -56,7 +55,7 @@ class init extends \phpbb\db\migration\migration
 	{
 		// ADD CONFIG VERSION
 		return array(
-			array('config.add', array('footerlinks_version', '1.3.1')),
+			array('config.add', array('footerlinks_version', '1.3.2')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
 
@@ -68,18 +67,7 @@ class init extends \phpbb\db\migration\migration
 				'module_mode'		=> 'overview',
 				'module_auth'		=> 'ext_joyceluna/footerlinks && acl_a_board',
 			))),
-
-		// ADD VALUES => DB
-		array('custom', array(array(&$this, 'add_footerlinks_data'))),
 		);
-	}
-
-	public function add_footerlinks_data()
-	{
-		$footerlinks_sql_query = array(
-		'footerlinks_id'	=> '1',
-		);
-		$this->db->sql_multi_insert($this->table_prefix . 'footerlinks', $footerlinks_sql_query);
 	}
 
 	/**
