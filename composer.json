@@ -25,7 +25,7 @@
 			"host": "phpbb-versionscheck.cf",
 			"directory": "/Joyce-Luna/footerlinks/master",
 			"filename": "version-check.json"
-			"ssl": true
+			"ssl": false
 		}
 	}
 }
