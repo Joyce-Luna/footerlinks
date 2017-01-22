@@ -6,26 +6,24 @@
     "version": "1.3.2",
     "time": "2016-08-15",
     "license": "GPL-2.0",
-    "authors": [
-        {
-            "name": "Joyce&Luna",
-            "homepage": "http://phpbb-style-design.de",
+    "authors": [{
+            "username": "Joyce&Luna",
+            "email": "joyceluna@online.de",
+            "homepage": "https://www.phpbb-style-design.de",
             "role": "Developer"
-        }
-    ],
+        }],
     "require": {
-        "php": ">=5.4 < 7.0"
+        "php": ">=5.4"
     },
     "extra": {
         "display-name": "Footerlinks",
         "soft-require": {
-        "phpbb/phpbb": "3.1 <= 3.2"
+            "phpbb/phpbb": ">=3.2"
         },
-         "version-check": {
-            "host": "phpbb-versionscheck.cf",
+        "version-check": {
+            "host": "phpbb-style-design.de",
             "directory": "/Joyce-Luna/footerlinks/master",
-            "filename": "version-check.json",
-            "ssl": true
+            "filename": "footerlinks-master.json"
         }
     }
 }
