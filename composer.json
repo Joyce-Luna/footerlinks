@@ -21,11 +21,5 @@
         "soft-require": {
         "phpbb/phpbb": "3.1 <= 3.2"
         },
-         "version-check": {
-            "host": "phpbb-versionscheck.cf",
-            "directory": "/Joyce-Luna/footerlinks/master",
-            "filename": "version-check.json",
-            "ssl": true
-        }
     }
 }
