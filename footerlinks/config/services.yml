@@ -1,0 +1,15 @@
+services:
+    joyceluna.footerlinks.controller:
+        class: joyceluna\footerlinks\controller\main
+        arguments:
+            - @config
+            - @controller.helper
+            - @template
+            - @user
+    joyceluna.footerlinks.listener:
+        class: joyceluna\footerlinks\event\listener
+        arguments:
+            - @controller.helper
+            - @template
+        tags:
+            - { name: event.listener }
