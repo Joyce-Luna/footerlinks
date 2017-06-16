@@ -23,6 +23,8 @@ matrix:
     - php: 7.1
       env: DB=mysqli 
       env: DB=mysqli
+    - php: hhvm
+      env: DB=mysqli
   allow_failures:
     - php: hhvm
   fast_finish: true
