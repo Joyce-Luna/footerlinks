@@ -13,7 +13,7 @@ class init extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.2', '>=');
+		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.3', '>=');
 
 	}
 
@@ -30,20 +30,12 @@ class init extends \phpbb\db\migration\migration
 				$this->table_prefix . 'footerlinks'	=> array(
 					'COLUMNS' => array(
 					'footerlinks_id'	=> array('UINT', null, 'auto_increment'),
-					'fl_enable' 		=> array('UINT', '0'),
 					'fl_ext_link'		=> array('UINT', '0'),
-					'fl_enable_b1'		=> array('UINT', '0'),		//Block 1
-					'fl_enable_b2'		=> array('UINT', '0'),		//Block 2
-					'fl_enable_b3'		=> array('UINT', '0'),		//Block 3
-					'fl_title_cat1'		=> array('VCHAR', ''),		//Cat1
-					'fl_title_cat2'		=> array('VCHAR', ''),		//Cat2
-					'fl_title_cat3'		=> array('VCHAR', ''),		//Cat3
-					'fl_link1'			=> array('VCHAR', ''),		//Link URL 1
-					'fl_link_text1'		=> array('VCHAR', ''),		//Link URL Text 1
-					'fl_link2'			=> array('VCHAR', ''),		//Link URL 2
-					'fl_link_text2'		=> array('VCHAR', ''),		//Link URL Text 2
-					'fl_link3'			=> array('VCHAR', ''),		//Link URL 3
-					'fl_link_text3'		=> array('VCHAR', ''),		//Link URL Text 3
+					'fl_enable_b'		=> array('UINT', '0'),		//Block 
+					'fl_title_cat'		=> array('VCHAR', ''),		//Cat
+					'fl_link'			=> array('VCHAR', ''),		//Link URL 
+					'fl_link_text'		=> array('VCHAR', ''),		//Link URL Text 
+					'fl_b_nr'			=> array('UINT', '0'),
 					),
 					'PRIMARY_KEY'	=> 'footerlinks_id',
 				),
@@ -55,7 +47,7 @@ class init extends \phpbb\db\migration\migration
 	{
 		// ADD CONFIG VERSION
 		return array(
-			array('config.add', array('footerlinks_version', '1.3.2')),
+			array('config.add', array('footerlinks_version', '1.3.3')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
 
