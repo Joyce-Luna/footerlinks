@@ -2,6 +2,10 @@
 ------------------------------------------------------------------- */
 
 .footer-links {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	justify-content: center;
 }
@@ -13,7 +17,6 @@
 
 .footer-links ul li:first-child {
 	border-bottom: 1px solid #cccccc;
-	color: #3F3F3F;
 	font-size: 12px;
 	font-weight: bold;
 }
@@ -31,15 +34,6 @@ div.footer-links ul {
 
 div.footer-links li:first-child {
 	font-weight: bold;
-}
-
-.content h2, .panel h2 {
-	border-bottom-color: #cccccc;
-	color: #000;
-	font-size: 12px;
-	font-weight: bold;
-	margin-bottom: 0.3em;
-	padding-bottom: 0.3em;
 }
 
 @media screen and (max-width: 768px) {
