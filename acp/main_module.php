@@ -38,32 +38,47 @@ class main_module
 		FROM '. $footerlinks_table;
 		$result = $db->sql_query($sql);
 
-		while ($row = $db->sql_fetchrow($result))
+			while ($row = $db->sql_fetchrow($result))
 		{
-			if (!empty($row['fl_link1']))
+			if (!empty($row['fl_link']) && ($row['fl_b_nr'] == 1))
 			{
 				$template->assign_block_vars('fl_links1', array(
-					'FL_LINK1'		=> $row['fl_link1'],
-					'FL_LINK_TEXT1'	=> $row['fl_link_text1'],
+					'FL_LINK1'		=> $row['fl_link'],
+					'FL_LINK_TEXT1'	=> $row['fl_link_text'],
+				));
+
+				$template->assign_vars(array(
+					'FL_ENABLE_B1'	=> $row['fl_enable_b'],
+					'FL_TITLE_CAT1'	=> $row['fl_title_cat']
 				));
 			};
 
-			if (!empty($row['fl_link2']))
+			if (!empty($row['fl_link']) && $row['fl_b_nr'] == '2')
 			{
 				$template->assign_block_vars('fl_links2', array(
-					'FL_LINK2'		=> $row['fl_link2'],
-					'FL_LINK_TEXT2'	=> $row['fl_link_text2'],
+					'FL_LINK2'		=> $row['fl_link'],
+					'FL_LINK_TEXT2'	=> $row['fl_link_text'],
+				));
+				$template->assign_vars(array(
+					'FL_ENABLE_B2'	=> $row['fl_enable_b'],
+					'FL_TITLE_CAT2'	=> $row['fl_title_cat']
 				));
 			};
 
-			if (!empty($row['fl_link3']))
+			if (!empty($row['fl_link'])& $row['fl_b_nr'] == '3')
 			{
 				$template->assign_block_vars('fl_links3', array(
-					'FL_LINK3'		=> $row['fl_link3'],
-					'FL_LINK_TEXT3'	=> $row['fl_link_text3'],
+					'FL_LINK3'		=> $row['fl_link'],
+					'FL_LINK_TEXT3'	=> $row['fl_link_text'],
+				));
+				$template->assign_vars(array(
+					'FL_ENABLE_B3'	=> $row['fl_enable_b'],
+					'FL_TITLE_CAT3'	=> $row['fl_title_cat']
 				));
 			}
 		};
+
+		$db->sql_freeresult($result);
 
 		if (empty($row['fl_link1']))
 		{
@@ -92,15 +107,6 @@ class main_module
 				trigger_error('FORM_INVALID');
 			}
 
-			function parseurl($fl_url)
-			{
-				if (!preg_match("@^[hf]tt?ps?://@", $fl_url))
-				{
-					$fl_url = "http://" . $fl_url;
-				}
-				return $fl_url;
-			}
-
 			$sql = 'DELETE FROM ' . $footerlinks_table ;
 			$db->sql_query($sql);
 
@@ -116,15 +122,18 @@ class main_module
 			$fl_link1 		= $this->request->variable('fl_link1', array('' => ''),true);
 			$fl_link_text1 	= $this->request->variable('fl_link_text1', array('' => ''),true);
 			$fl_link1		= array_merge( array_filter($fl_link1));
+			$fl_title_cat1	= $this->request->variable('fl_title_cat1', '',true);
+			$fl_enable_b1	= $this->request->variable('fl_enable_b1', '',true);
 
 			$i = 0;
 			while ($i < count($fl_link1))
 			{
-				$fl_link1[$i] = parseurl($fl_link1[$i]);
-
 				$sql_ary1 = array(
-				'fl_link1' 		=> $fl_link1[$i],
-				'fl_link_text1' => $fl_link_text1[$i],
+				'fl_enable_b'	=> $fl_enable_b1,
+				'fl_link' 		=> $fl_link1[$i],
+				'fl_link_text'	=> $fl_link_text1[$i],
+				'fl_title_cat'	=> $fl_title_cat1,
+				'fl_b_nr'		=> '1'
 				);
 				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary1));
 				$i++;
@@ -133,15 +142,18 @@ class main_module
 			$fl_link2 		= $this->request->variable('fl_link2', array('' => ''),true);
 			$fl_link_text2 	= $this->request->variable('fl_link_text2', array('' => ''),true);
 			$fl_link2		= array_merge( array_filter($fl_link2));
+			$fl_title_cat2	= $this->request->variable('fl_title_cat2', '',true);
+			$fl_enable_b2	= $this->request->variable('fl_enable_b2', '',true);
 
 			$i = 0;
 			while ($i < count($fl_link2))
 			{
-				$fl_link2[$i] = parseurl($fl_link2[$i]);
-
 				$sql_ary2 = array(
-				'fl_link2' 		=> $fl_link2[$i],
-				'fl_link_text2'	=> $fl_link_text2[$i],
+				'fl_enable_b'	=> $fl_enable_b2,
+				'fl_link' 		=> $fl_link2[$i],
+				'fl_link_text'	=> $fl_link_text2[$i],
+				'fl_title_cat'	=> $fl_title_cat2,
+				'fl_b_nr'		=> '2'
 				);
 				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary2));
 				$i++;
@@ -150,33 +162,26 @@ class main_module
 			$fl_link3 		= $this->request->variable('fl_link3', array('' => ''),true);
 			$fl_link_text3 	= $this->request->variable('fl_link_text3', array('' => ''),true);
 			$fl_link3		= array_merge( array_filter($fl_link3));
+			$fl_title_cat3	= $this->request->variable('fl_title_cat3', '',true);
+			$fl_enable_b3	= $this->request->variable('fl_enable_b3', '',true);
 
 			$i = 0;
 			while ($i < count($fl_link3) && (!empty($fl_link3[$i])))
 			{
-				$fl_link3[$i] = parseurl($fl_link3[$i]);
-
 				$sql_ary3 = array(
-				'fl_link3' 		=> $fl_link3[$i],
-				'fl_link_text3'	=> $fl_link_text3[$i],
+				'fl_enable_b'	=> $fl_enable_b3,
+				'fl_link' 		=> $fl_link3[$i],
+				'fl_link_text'	=> $fl_link_text3[$i],
+				'fl_title_cat'	=> $fl_title_cat3,
+				'fl_b_nr'		=> '3'
 				);
 				$db->sql_query('INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_ary3));
 				$i++;
 			}
 
-			$fl_enable_b1 = (($this->request->variable('fl_enable_b1', '') && $fl_link1)) ? true : false;
-			$fl_enable_b2 = (($this->request->variable('fl_enable_b2', '') && $fl_link2)) ? true : false;
-			$fl_enable_b3 = (($this->request->variable('fl_enable_b3', '') && $fl_link3)) ? true : false;
-
 			$sql_ary_block= array(
-				'fl_enable' 	=> $this->request->variable('fl_enable', ''),
+				'fl_enable_b' 	=> $this->request->variable('fl_enable', ''),
 				'fl_ext_link' 	=> $this->request->variable('fl_ext_link', ''),
-				'fl_enable_b1'	=> $fl_enable_b1,
-				'fl_enable_b2'	=> $fl_enable_b2,
-				'fl_enable_b3'	=> $fl_enable_b3,
-				'fl_title_cat1'	=> $this->request->variable('fl_title_cat1', '',true),
-				'fl_title_cat2'	=> $this->request->variable('fl_title_cat2', '',true),
-				'fl_title_cat3'	=> $this->request->variable('fl_title_cat3', '',true),
 			);
 
 			$db->sql_query('UPDATE ' . $footerlinks_table . '
@@ -193,20 +198,17 @@ class main_module
 			trigger_error($user->lang['FL_SAVED'] . adm_back_link($this->u_action));
 		}
 
-		$sql = 'SELECT *
-		FROM '. $footerlinks_table;
+		$sql = 'SELECT fl_enable_b, fl_ext_link 
+		FROM '. $footerlinks_table . '
+		WHERE footerlinks_id =  1';
+
 		$result = $db->sql_query($sql);
 		$fl_data = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
-			'FL_ENABLE'		=> $fl_data['fl_enable'],
+			'FL_ENABLE'		=> $fl_data['fl_enable_b'],
 			'FL_EXT_LINK'	=> $fl_data['fl_ext_link'],
-			'FL_ENABLE_B1'	=> $fl_data['fl_enable_b1'],
-			'FL_ENABLE_B2'	=> $fl_data['fl_enable_b2'],
-			'FL_ENABLE_B3'	=> $fl_data['fl_enable_b3'],
-			'FL_TITLE_CAT1'	=> $fl_data['fl_title_cat1'],
-			'FL_TITLE_CAT2'	=> $fl_data['fl_title_cat2'],
-			'FL_TITLE_CAT3' => $fl_data['fl_title_cat3'],
 		));
 	}
 }
