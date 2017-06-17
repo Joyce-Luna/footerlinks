@@ -13,7 +13,7 @@ class init extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.3', '>=');
+		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.4', '>=');
 
 	}
 
@@ -47,7 +47,7 @@ class init extends \phpbb\db\migration\migration
 	{
 		// ADD CONFIG VERSION
 		return array(
-			array('config.add', array('footerlinks_version', '1.3.3')),
+			array('config.add', array('footerlinks_version', '1.3.4')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
 
