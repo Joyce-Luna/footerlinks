@@ -2,6 +2,10 @@
 ------------------------------------------------------------------- */
 
 .footer-links {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	justify-content: center;
 }
@@ -12,7 +16,7 @@
 }
 
 .footer-links ul li:first-child {
-	border-bottom: 1px groove;
+	border-bottom: 1px solid #cccccc;
 	font-size: 12px;
 	font-weight: bold;
 }
@@ -20,7 +24,6 @@
 div.footer-links div.panel {
 	width: 300px;
 	margin: 0 25px;
-	padding-bottom: 0.5em;
 	align-self: flex-start;
 	box-shadow: 0 -1px 4px -2px rgba(2, 2, 2, 0.7);
 }
@@ -40,6 +43,12 @@ div.footer-links li:first-child {
 	}
   
 div.footer-links div.panel {
+	width: 300px;
+	margin: 5px 25px;
+}
+
+div.footer-links div.panel {
+	width: 300px;
 	margin: 5px 25px;
 	align-self: center;
 }
