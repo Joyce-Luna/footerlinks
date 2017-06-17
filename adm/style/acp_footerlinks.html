@@ -2,25 +2,25 @@
 <!-- INCLUDE overall_header.html -->
 
 <h1>{L_ACP_FL_MOD}</h1>
-<script>
-function hide_elements()
-{
-	var elementNames = hide_elements.arguments;
-	for (var i=0; i<elementNames.length; i++)
-	{
-		var elementName = elementNames[i];
-		document.getElementById(elementName).style.display='none';
-	}
-}
 
-function show_elements()
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+function show_elements(cat)
 {
-	var elementNames = show_elements.arguments;
-	for (var i=0; i<elementNames.length; i++)
-	{
-		var elementName = elementNames[i];
-		document.getElementById(elementName).style.display='block';
-	}
+	var cat = cat;
+	if (cat === 'cat1') {
+		$('#cat1,#link1').show();
+		$('#cat2,#cat3,#link2,#link3').hide();
+	};
+	if (cat === 'cat2') {
+		$('#cat2,#link2').show();
+		$('#cat1,#cat3,#link1,#link3').hide();
+	};
+		if (cat === 'cat3') {
+		$('#cat3,#link3').show();
+		$('#cat1,#cat2,#link1,#link2').hide();
+	};
 }
 
 function clone_this(id)
@@ -55,7 +55,7 @@ function clone_this(id)
 	</fieldset>
 	<fieldset>
 		<dl>
-			<dt><label for="fl_enable_b1"><a href="#" onclick="show_elements('cat1','link1');hide_elements('cat2','cat3','link2','link3');">{L_FL_ENABLE_B1}</a></label></dt>
+			<dt><label for="fl_enable_b1"><a href="#" onclick="show_elements('cat1');">{L_FL_ENABLE_B1}</a></label></dt>
 			<dd style="display:none" id="cat1"><input type="radio" class="radio" id="fl_enable_b1" name="fl_enable_b1" value="1" <!-- IF FL_ENABLE_B1 -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
 				<input type="radio" class="radio"name="fl_enable_b1" value="0" <!-- IF not FL_ENABLE_B1 -->checked="checked"<!-- ENDIF --> /> {L_NO}
 				<br /><br />
@@ -73,7 +73,7 @@ function clone_this(id)
 	</fieldset>
 	<fieldset>
 		<dl>
-			<dt><label for="fl_enable_b2"><a href="#" onclick="show_elements('cat2','link2');hide_elements('cat1','cat3','link1','link3');">{L_FL_ENABLE_B2}</a></label></dt>
+			<dt><label for="fl_enable_b2"><a href="#" onclick="show_elements('cat2');">{L_FL_ENABLE_B2}</a></label></dt>
 			<dd style="display:none" id="cat2"><input type="radio" class="radio" id="fl_enable_b2" name="fl_enable_b2" value="1" <!-- IF FL_ENABLE_B2 -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
 				<input type="radio" class="radio" name="fl_enable_b2" value="0" <!-- IF not FL_ENABLE_B2 -->checked="checked"<!-- ENDIF --> /> {L_NO}
 				<br /><br />
@@ -91,7 +91,7 @@ function clone_this(id)
 	</fieldset>	
 	<fieldset>
 		<dl>
-			<dt><label for="fl_enable_b3"><a href="#" onclick="show_elements('cat3','link3');hide_elements('cat1','cat2','link1','link2');">{L_FL_ENABLE_B3}</a></label></dt>
+			<dt><label for="fl_enable_b3"><a href="#" onclick="show_elements('cat3');">{L_FL_ENABLE_B3}</a></label></dt>
 			<dd style="display:none" id="cat3"><input type="radio" class="radio" id="fl_enable_b3" name="fl_enable_b3" value="1" <!-- IF FL_ENABLE_B3 -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
 				<input type="radio" class="radio" name="fl_enable_b3" value="0" <!-- IF not FL_ENABLE_B3 -->checked="checked"<!-- ENDIF --> /> {L_NO}
 				<br /><br />
