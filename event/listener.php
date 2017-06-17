@@ -21,22 +21,14 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\template\template */
 	protected $template;
 
-	/** @var \phpbb\user */
-	protected $user;
-
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
-
-	/** @var \phpbb\request\request */
-	protected $request;
 
 	/**
 	* Constructor
 	*
 	* @param \phpbb\template\template          	$template
-	* @param \phpbb\user                       	$user
 	* @param \phpbb\db\driver\driver_interface 	$db
-	* @param \phpbb\request\request            	$request
 	* @param string								$footerlinks_table
 	*/
 
@@ -44,7 +36,6 @@ class listener implements EventSubscriberInterface
 	\phpbb\request\request $request, $footerlinks_table)
 	{
 		$this->template = $template;
-		$this->user = $user;
 		$this->db = $db;
 		$this->request = $request;
 		$this->footerlinks_table = $footerlinks_table;
@@ -70,59 +61,67 @@ class listener implements EventSubscriberInterface
 
 	public function footerlinks($event)
 	{
+		$sql = 'SELECT fl_enable_b, fl_ext_link
+		FROM '. $this->footerlinks_table . '
+		WHERE footerlinks_id =  1';
+
+		$result	 = $this->db->sql_query($sql,86400);
+		$row = $this->db->sql_fetchrow($result);
+
+		if ($row['fl_enable_b'])
+		{
+			$this->template->assign_vars(array(
+				'FL_ENABLE'			=> $row['fl_enable_b'],
+				'FL_EXT_LINK'		=> $row['fl_ext_link'],
+			));
+		}
+		$this->db->sql_freeresult($result);
+
 		$sql = 'SELECT * 
 		FROM '. $this->footerlinks_table;
 
 		$result	 = $this->db->sql_query($sql,86400);
-		$fl_data = $this->db->sql_fetchrow($result);
+		$row = $this->db->sql_fetchrow($result);
 
-		if ($fl_data['fl_enable'])
+		while ($row = $this->db->sql_fetchrow($result))
 		{
+			if (!empty($row['fl_link']) && ($row['fl_b_nr'] == 1))
+			{				
 			$this->template->assign_vars(array(
-				'FL_ENABLE'			=> $fl_data['fl_enable'],
-				'FL_EXT_LINK'		=> $fl_data['fl_ext_link'],
-				'FL_ENABLE_B1'		=> $fl_data['fl_enable_b1'],
-				'FL_ENABLE_B2'		=> $fl_data['fl_enable_b2'],
-				'FL_ENABLE_B3'		=> $fl_data['fl_enable_b3'],
-				'FL_TITLE_CAT1'		=> $fl_data['fl_title_cat1'],
-				'FL_TITLE_CAT2'		=> $fl_data['fl_title_cat2'],
-				'FL_TITLE_CAT3'		=> $fl_data['fl_title_cat3'],
+				'FL_ENABLE_B1'	=> $row['fl_enable_b'],
+				'FL_TITLE_CAT1'	=> $row['fl_title_cat']
 			));
 
-			while ($row = $this->db->sql_fetchrow($result))
-			{
-				if ($fl_data['fl_enable_b1'])
-				{
-					if (!empty($row['fl_link1']))
-					{
-						$this->template->assign_block_vars('fl_links1', array(
-							'FL_LINK1'			=> $row['fl_link1'],
-							'FL_LINK_TEXT1'		=> $row['fl_link_text1'],
-						));
-					};
-				}
+			$this->template->assign_block_vars('fl_links1', array(
+				'FL_LINK1'			=> $row['fl_link'],
+				'FL_LINK_TEXT1'		=> $row['fl_link_text'],
+				));
+			}
 
-				if ($fl_data['fl_enable_b2'])
-				{
-					if (!empty($row['fl_link2']))
-					{
-						$this->template->assign_block_vars('fl_links2', array(
-							'FL_LINK2'			=> $row['fl_link2'],
-							'FL_LINK_TEXT2'		=> $row['fl_link_text2'],
-						));
-					};
-				};
+			if (!empty($row['fl_link']) && ($row['fl_b_nr'] == 2))
+			{				
+			$this->template->assign_vars(array(
+				'FL_ENABLE_B2'	=> $row['fl_enable_b'],
+				'FL_TITLE_CAT2'	=> $row['fl_title_cat']
+			));
 
-				if ($fl_data['fl_enable_b3'])
-				{
-					if (!empty($row['fl_link3']))
-					{
-						$this->template->assign_block_vars('fl_links3', array(
-							'FL_LINK3'			=> $row['fl_link3'],
-							'FL_LINK_TEXT3'		=> $row['fl_link_text3'],
-						));
-					}
-				}
+			$this->template->assign_block_vars('fl_links2', array(
+				'FL_LINK2'			=> $row['fl_link'],
+				'FL_LINK_TEXT2'		=> $row['fl_link_text'],
+				));
+			}
+
+			if (!empty($row['fl_link']) && ($row['fl_b_nr'] == 3))
+			{				
+			$this->template->assign_vars(array(
+				'FL_ENABLE_B3'	=> $row['fl_enable_b'],
+				'FL_TITLE_CAT3'	=> $row['fl_title_cat']
+			));
+
+			$this->template->assign_block_vars('fl_links3', array(
+				'FL_LINK3'			=> $row['fl_link'],
+				'FL_LINK_TEXT3'		=> $row['fl_link_text'],
+				));
 			}
 		}
 		$this->db->sql_freeresult($result);
