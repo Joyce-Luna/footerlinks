@@ -11,15 +11,15 @@ function show_elements(cat)
 	var cat = cat;
 	if (cat === 'cat1') {
 		$('#cat1,#link1').show();
-		$('#cat2,#cat3').hide();
+		$('#cat2,#cat3,#link1,#link3').hide();
 	};
 	if (cat === 'cat2') {
 		$('#cat2,#link2').show();
-		$('#cat1,#cat3').hide();
+		$('#cat1,#cat3,#link1,#link3').hide();
 	};
 		if (cat === 'cat3') {
 		$('#cat3,#link3').show();
-		$('#cat1,#cat2').hide();
+		$('#cat1,#cat2,#link1,#link2').hide();
 	};
 }
 
