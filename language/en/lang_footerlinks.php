@@ -44,10 +44,10 @@ $lang = array_merge($lang, array(
 	'FL_ENABLE_B1'						=> 'Block 1:',
 	'FL_ENABLE_B2'						=> 'Block 2:',
 	'FL_ENABLE_B3'						=> 'Block 3:',
-	'FL_CAT_TITEL'						=> 'Title',
+	'FL_CAT_TITEL'						=> 'Titel',
 	'FL_URL'							=> 'URL',
 	'FL_URL_TEXT'						=> 'Link Description',
 	'FL_MORE_LINKS'						=> 'add Link',
-	'LOG_FL_SAVE'						=> 'Settings Footerlink Mod changed',
-	'FL_SAVED'							=> 'Settings saved',
+	'LOG_FL_SAVE'						=> 'Settings Footerlink Mod changed' ,
+	'FL_SAVED'							=> 'Settngs saved',
 ));
