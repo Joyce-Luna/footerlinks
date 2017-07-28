@@ -49,5 +49,5 @@ $lang = array_merge($lang, array(
 	'FL_URL_TEXT'					=> 'Link Description',
 	'FL_MORE_LINKS'					=> 'add Link',
 	'LOG_FL_SAVE'					=> 'Settings Footerlink Mod changed' ,
-	'FL_SAVED'							=> 'Settings saved',
+	'FL_SAVED'					=> 'Settings saved',
 ));
