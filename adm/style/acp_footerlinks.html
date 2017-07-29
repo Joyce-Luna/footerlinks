@@ -3,7 +3,6 @@
 
 <h1>{L_ACP_FL_MOD}</h1>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
 function show_elements(cat)
@@ -57,7 +56,7 @@ function clone_this(id)
 		<dl>
 			<dt><label for="fl_enable_b1"><a href="#" onclick="show_elements('cat1');">{L_FL_ENABLE_B1}</a></label></dt>
 			<dd style="display:none" id="cat1"><input type="radio" class="radio" id="fl_enable_b1" name="fl_enable_b1" value="1" <!-- IF FL_ENABLE_B1 -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
-				<input type="radio" class="radio"name="fl_enable_b1" value="0" <!-- IF not FL_ENABLE_B1 -->checked="checked"<!-- ENDIF --> /> {L_NO}
+				<input type="radio" class="radio" name="fl_enable_b1" value="0" <!-- IF not FL_ENABLE_B1 -->checked="checked"<!-- ENDIF --> /> {L_NO}
 				<br /><br />
 				<b><label for="fl_title_cat1">{L_FL_CAT_TITEL}</label></b>
 				<input type="text" name="fl_title_cat1"  id="fl_title_cat1" value="{FL_TITLE_CAT1}" />
