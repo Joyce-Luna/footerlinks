@@ -23,7 +23,7 @@ matrix:
     - php: 7.1
       env: DB=mysqli
   fast_finish: true
-
+  
 env:
   global:
     - EXTNAME="joyceluna/footerlinks" # CHANGE name of the extension HERE
