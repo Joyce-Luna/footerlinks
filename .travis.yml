@@ -1,30 +1,3 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Gist
-
-    @Joyce-Luna
-
-1
-1
-
-    1
-
-Joyce-Luna/footerlinks
-Code
-Pull requests 0
-Projects 0
-Settings
-footerlinks/.travis.yml
-896796b 20 hours ago
-@Joyce-Luna Joyce-Luna Update .travis.yml
-@Joyce-Luna
-@tas2580
-55 lines (47 sloc) 1.67 KB
 sudo: required
 
 language: php
@@ -62,7 +35,7 @@ env:
 
 branches:
   only:
-    - master
+    - Dev-Release
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
@@ -79,7 +52,3 @@ script:
   - sh -c "if [ '$IMAGE_ICC' != '0' ]; then travis/check-image-icc-profiles.sh $DB $TRAVIS_PHP_VERSION; fi"
   - phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php
   - sh -c "if [ '$EPV' != '0' ] && [ '$TRAVIS_PHP_VERSION' = '5.5' ] && [ '$DB' = 'mysqli' ]; then phpBB/vendor/bin/EPV.php run --dir='phpBB/ext/$EXTNAME/'; fi"
-
-    Contact GitHub API Training Shop Blog About 
-
-    © 2017 GitHub, Inc. Terms Privacy Security Status Help 
