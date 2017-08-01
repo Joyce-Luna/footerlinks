@@ -35,7 +35,7 @@ env:
 
 branches:
   only:
-    - Dev-Release
+    - master
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
