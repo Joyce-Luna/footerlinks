@@ -14,7 +14,7 @@ TRAVIS_PHP_VERSION=$2
 if [ "$DB" == "mysqli" -a "$TRAVIS_PHP_VERSION" == "5.5" ]
 then
 	cd phpBB
-	cocomposer remove sami/sami --update-with-dependencies --dev --no-interaction
+	composer remove sami/sami --update-with-dependencies --dev --no-interaction
 	composer require phpbb/epv:dev-master --dev --no-interaction --ignore-platform-reqs
 	cd ../
 fi
