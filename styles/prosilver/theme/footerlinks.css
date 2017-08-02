@@ -16,7 +16,7 @@
 }
 
 .footer-links ul li:first-child {
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid;
 	font-size: 12px;
 	font-weight: bold;
 }
