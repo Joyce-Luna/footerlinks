@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 #
 # PayPal Donation extension for the phpBB Forum Software package.
 #
