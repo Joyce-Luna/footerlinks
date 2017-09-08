@@ -13,7 +13,7 @@ class init extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.6', '>=');
+		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.7', '>=');
 
 	}
 
@@ -31,10 +31,10 @@ class init extends \phpbb\db\migration\migration
 					'COLUMNS' => array(
 					'footerlinks_id'	=> array('UINT', null, 'auto_increment'),
 					'fl_ext_link'		=> array('UINT', '0'),
-					'fl_enable_b'		=> array('UINT', '0'),		//Block 
-					'fl_title_cat'		=> array('VCHAR', ''),		//Cat
-					'fl_link'			=> array('VCHAR', ''),		//Link URL 
-					'fl_link_text'		=> array('VCHAR', ''),		//Link URL Text 
+					'fl_enable_b'		=> array('UINT', '0'),
+					'fl_title_cat'		=> array('VCHAR', ''),
+					'fl_link'			=> array('VCHAR', ''),
+					'fl_link_text'		=> array('VCHAR', ''),
 					'fl_b_nr'			=> array('UINT', '0'),
 					),
 					'PRIMARY_KEY'	=> 'footerlinks_id',
@@ -47,7 +47,9 @@ class init extends \phpbb\db\migration\migration
 	{
 		// ADD CONFIG VERSION
 		return array(
-			array('config.add', array('footerlinks_version', '1.3.6')),
+			array('config.add', array('footerlinks_version', '1.3.7')),
+			array('config.add', array('footerlinks_enable', '0')),
+			array('config.add', array('footerlinks_ext_link', '0')),
 			array('permission.add', array('a_footerlinks', true)),
 			array('permission.permission_set', array('ADMINISTRATORS', 'ext_joyceluna/footerlinks && acl_a_board', 'group')),
 
