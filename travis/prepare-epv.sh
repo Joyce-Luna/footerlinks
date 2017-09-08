@@ -1,20 +1,24 @@
 #!/bin/bash
 #
-# PayPal Donation extension for the phpBB Forum Software package.
+# This file is part of the phpBB Forum Software package.
 #
-# @copyright (c) 2016 Matt Friedman
+# @copyright (c) phpBB Limited <https://www.phpbb.com>
 # @license GNU General Public License, version 2 (GPL-2.0)
+#
+# For full copyright and license information, please see
+# the docs/CREDITS.txt file.
 #
 set -e
 set -x
 
-DB=$1
-TRAVIS_PHP_VERSION=$2
+EXTNAME=$1
+BRANCH=$2
+EXTPATH_TEMP=$3
 
-if [ "$DB" == "mysqli" -a "$TRAVIS_PHP_VERSION" == "5.5" ]
-then
-	cd phpBB
-	composer remove sami/sami --update-with-dependencies --dev --no-interaction
-	composer require phpbb/epv:dev-master --dev --no-interaction --ignore-platform-reqs
-	cd ../
-fi
+# Copy extension to a temp folder
+mkdir ../../tmp
+cp -R . ../../tmp
+cd ../../
+
+# Clone phpBB
+git clone --depth=1 "git://github.com/phpbb/phpbb.git" "phpBB3" --branch=$BRANCH
