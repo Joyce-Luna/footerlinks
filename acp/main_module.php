@@ -29,7 +29,7 @@ class main_module
 		$this->tpl_name 	= 'acp_footerlinks';
 		$this->page_title 	= $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request 		= $request;
-		$this->log 			= $phpbb_log;
+		$this->log			= $phpbb_log;
 		$this->config		= $config;
 		$footerlinks_table = $phpbb_container->getParameter('tables.footerlinks_table');
 
