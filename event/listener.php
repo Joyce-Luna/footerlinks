@@ -24,21 +24,26 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var \phpbb\config\config */
+	protected $config;
+
 	/**
 	* Constructor
 	*
 	* @param \phpbb\template\template          	$template
 	* @param \phpbb\db\driver\driver_interface 	$db
 	* @param string								$footerlinks_table
+	* @param \phpbb\config\config				$config
 	*/
 
 	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db,
-	\phpbb\request\request $request, $footerlinks_table)
+	\phpbb\request\request $request, $footerlinks_table, \phpbb\config\config $config)
 	{
 		$this->template = $template;
 		$this->db = $db;
 		$this->request = $request;
 		$this->footerlinks_table = $footerlinks_table;
+		$this->config = $config;
 	}
 
 	public static function getSubscribedEvents()
@@ -61,27 +66,14 @@ class listener implements EventSubscriberInterface
 
 	public function footerlinks($event)
 	{
-		$sql = 'SELECT fl_enable_b, fl_ext_link
-		FROM '. $this->footerlinks_table . '
-		WHERE footerlinks_id =  1';
-
-		$result	 = $this->db->sql_query($sql,86400);
-		$row = $this->db->sql_fetchrow($result);
-
-		if ($row['fl_enable_b'])
-		{
-			$this->template->assign_vars(array(
-				'FL_ENABLE'			=> $row['fl_enable_b'],
-				'FL_EXT_LINK'		=> $row['fl_ext_link'],
-			));
-		}
-		$this->db->sql_freeresult($result);
+		$this->template->assign_vars(array(
+			'FL_ENABLE'			=> $this->config['footerlinks_enable'],
+			'FL_EXT_LINK'		=> $this->config['footerlinks_ext_link'],
+		));
 
 		$sql = 'SELECT * 
 		FROM '. $this->footerlinks_table;
-
 		$result	 = $this->db->sql_query($sql,86400);
-		$row = $this->db->sql_fetchrow($result);
 
 		while ($row = $this->db->sql_fetchrow($result))
 		{
