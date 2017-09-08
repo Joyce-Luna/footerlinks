@@ -11,12 +11,12 @@
 }
 
 .title {
+	border-bottom: 1px solid;
 	margin-bottom: 0.3em;
 	padding-bottom: 0.3em;
 }
 
 .footer-links ul li:first-child {
-	border-bottom: 1px solid;
 	font-size: 12px;
 	font-weight: bold;
 }
