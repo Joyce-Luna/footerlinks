@@ -15,11 +15,6 @@ EXTNAME=$1
 BRANCH=$2
 EXTPATH_TEMP=$3
 
-if [ "$DB" == "mariadb" ]
-then
-	travis/setup-mariadb.sh
-fi
-
 # Copy extension to a temp folder
 mkdir ../../tmp
 cp -R . ../../tmp
