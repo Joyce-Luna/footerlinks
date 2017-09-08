@@ -8,10 +8,10 @@
 set -e
 set -x
 
-DB=$1
-TRAVIS_PHP_VERSION=$2
+EPV=$1
+NOTESTS=$2
 
-if [ "$DB" == "mysqli" -a "$TRAVIS_PHP_VERSION" == "5.5" ]
+if [ "$EPV" == "1" -a "$NOTESTS" == "1" ]
 then
 	cd phpBB
 	composer remove sami/sami --update-with-dependencies --dev --no-interaction
