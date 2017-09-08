@@ -23,14 +23,13 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $template, $request, $phpbb_log, $phpbb_container, $cache, $config;
+		global $db, $user, $template, $request, $phpbb_log, $phpbb_container, $cache;
 
 		$this->cache = $cache;
 		$this->tpl_name 	= 'acp_footerlinks';
 		$this->page_title 	= $user->lang['ACP_FOOTERLINKS_TITLE'];
 		$this->request 		= $request;
 		$this->log 			= $phpbb_log;
-		$this->config		= $config;
 		$footerlinks_table = $phpbb_container->getParameter('tables.footerlinks_table');
 
 		add_form_key('footerlinks/acp_footerlinks');
@@ -39,7 +38,7 @@ class main_module
 		FROM '. $footerlinks_table;
 		$result = $db->sql_query($sql);
 
-		while ($row = $db->sql_fetchrow($result))
+			while ($row = $db->sql_fetchrow($result))
 		{
 			if (!empty($row['fl_link']) && ($row['fl_b_nr'] == 1))
 			{
@@ -79,6 +78,8 @@ class main_module
 			}
 		};
 
+		$db->sql_freeresult($result);
+
 		if (empty($row['fl_link1']))
 		{
 			$template->assign_block_vars('fl_links1', array(
@@ -97,7 +98,6 @@ class main_module
 				'FL_LINK3' => '',
 			));
 		};
-		$db->sql_freeresult($result);
 
 		$submit = $request->is_set_post('submit');
 		if ($submit)
@@ -113,11 +113,11 @@ class main_module
 			$sql = 'ALTER TABLE ' . $footerlinks_table . ' AUTO_INCREMENT = 1' ;
 			$db->sql_query($sql);
 
-			$fl_enable = $this->request->variable('fl_enable',' ',true);
-			$this->config->set('footerlinks_enable', $fl_enable);
-
-			$fl_ext_link = $this->request->variable('fl_ext_link',' ',true);
-			$this->config->set('footerlinks_ext_link', $fl_ext_link);
+			$sql_arr_id = array(
+				'footerlinks_id' => '1',
+			);
+			$sql = 'INSERT INTO ' . $footerlinks_table . ' ' . $db->sql_build_array('INSERT', $sql_arr_id);
+			$db->sql_query($sql);
 
 			$fl_link1 		= $this->request->variable('fl_link1', array('' => ''),true);
 			$fl_link_text1 	= $this->request->variable('fl_link_text1', array('' => ''),true);
@@ -179,6 +179,16 @@ class main_module
 				$i++;
 			}
 
+			$sql_ary_block= array(
+				'fl_enable_b' 	=> $this->request->variable('fl_enable', ''),
+				'fl_ext_link' 	=> $this->request->variable('fl_ext_link', ''),
+			);
+
+			$db->sql_query('UPDATE ' . $footerlinks_table . '
+				SET ' . $db->sql_build_array('UPDATE', $sql_ary_block) . "
+				WHERE footerlinks_id =  1"
+			);
+
 			$cache->destroy('sql', $footerlinks_table);
 
 			$user_id = $user->data['user_id'];
@@ -188,9 +198,17 @@ class main_module
 			trigger_error($user->lang['FL_SAVED'] . adm_back_link($this->u_action));
 		}
 
+		$sql = 'SELECT fl_enable_b, fl_ext_link 
+		FROM '. $footerlinks_table . '
+		WHERE footerlinks_id =  1';
+
+		$result = $db->sql_query($sql);
+		$fl_data = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
+
 		$template->assign_vars(array(
-			'FL_ENABLE'		=> $this->config['footerlinks_enable'],
-			'FL_EXT_LINK'	=> $this->config['footerlinks_ext_link'],
+			'FL_ENABLE'		=> $fl_data['fl_enable_b'],
+			'FL_EXT_LINK'	=> $fl_data['fl_ext_link'],
 		));
 	}
 }
