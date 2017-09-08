@@ -9,5 +9,6 @@ services:
         - '@dbal.conn'
         - '@request'
         - '%tables.footerlinks_table%'
+        - '@config'
         tags:
             - { name: event.listener }
