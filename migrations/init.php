@@ -13,7 +13,7 @@ class init extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.9', '>=');
+		return isset($this->config['footerlinks_version']) && version_compare($this->config['footerlinks_version'], '1.3.8', '>=');
 
 	}
 
@@ -47,7 +47,7 @@ class init extends \phpbb\db\migration\migration
 	{
 		// ADD CONFIG VERSION
 		return array(
-			array('config.add', array('footerlinks_version', '1.3.9')),
+			array('config.add', array('footerlinks_version', '1.3.8')),
 			array('config.add', array('footerlinks_enable', '0')),
 			array('config.add', array('footerlinks_ext_link', '0')),
 			array('permission.add', array('a_footerlinks', true)),
